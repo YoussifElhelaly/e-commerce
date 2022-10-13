@@ -1,0 +1,194 @@
+*{
+    color: grey;
+}
+
+nav {
+    padding: 5px 50px;
+    position: relative;
+}
+
+nav::before {
+    position: absolute;
+    content: "";
+    border-top: 1px solid grey;
+    width: 100%;
+    left: 0;
+    top: 35px;
+}
+
+nav .info-nav a{
+    font-size: 13px;
+    color: grey;
+}
+
+nav .info-nav a:hover {
+    color: white;
+}
+
+nav .info-nav ul li {
+    padding: 0 15px;
+    position: relative;
+}
+
+nav .info-nav ul li:not(:first-child):before {
+    content: "";
+    position: absolute;
+    border-left: 1px solid grey;
+    height: 100%;
+    left: 0;
+
+}
+
+nav .details-nav {
+    padding: 10px 0;
+    
+}
+
+nav .details-nav .menu {
+    font-size: 22px;
+    height: fit-content;
+}
+
+nav .details-nav .pages ul li {
+    padding: 5px 15px;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+nav .details-nav .user-nav ul {
+    padding: 0 15px;
+}
+
+nav .details-nav .user-nav ul li{
+    margin: 5px 18px;
+    font-size: 20px;
+    width: fit-content;
+    /* color: white; */
+    cursor: pointer;
+}
+
+nav .details-nav .user-nav ul li i{
+    color: white;
+}
+
+
+nav .details-nav .user-nav ul li .user-log {
+    position: absolute;
+    background-color: #212121;
+    z-index: 200;
+    width: 250px;
+    left: 50%;
+    top: 0px;
+    transform: translateX(-50%);
+    text-align: center;
+    padding: 10px;
+    border-top: 2px solid #fed700;
+    border-radius: 0 0 10px 10px;
+    /* opacity: 0; */
+    transition: 0.3s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+nav .details-nav .user-nav ul li .user-log.active {
+    top: 50px;
+    visibility: visible;
+    opacity: 1;
+}
+
+nav .details-nav .user-nav ul li .user-log p {
+    font-size: 16px;
+}
+
+nav .details-nav .user-nav ul li .user-log .signIn {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+}
+
+nav .details-nav .user-nav ul li .user-log .signIn a {
+    background-color: #fed700;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    border: none;
+    outline: none;
+}
+
+nav .details-nav .user-nav ul li .user-log .signUp p {
+    padding-top: 10px;
+}
+
+nav .details-nav .user-nav ul li .user-log .signUp a {
+    font-size: 16px;
+}
+
+nav .details-nav .user-nav ul li span {
+    color: white;
+    padding-left: 10px;
+    font-size: 16px;
+}
+
+.mobile-nav {
+    display: none;
+} 
+
+.mobile-nav .menu-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 28px;
+    color: #333e48;
+}
+
+.mobile-nav .menu {
+    position: absolute;
+    top: 0;
+    left: -400px;
+    display: flex;
+    flex-direction: column;
+    background-color: #151515;
+    color: white;
+    height: 100vh;
+    z-index: 200;
+    box-shadow: -20px 0px 20px 20px rgba(0, 0, 0, 0.534) ; 
+    transition: 0.3s;
+}
+
+.mobile-nav .menu ul{
+    margin-top: 10px;
+}
+
+.mobile-nav .menu ul li{
+    color: white;
+    padding: 10px;
+    margin: 0 100px;
+}
+
+.mobile-nav .menu button {
+    background-color: transparent;
+    border: none;
+    font-size: 28px;
+    margin: 10px;
+    text-align: right;
+}
+
+@media screen and (max-width: 1024px) {
+    nav {
+        padding: 0;
+    }
+    nav::before{
+        content: unset;
+    }
+    nav .info-nav {
+        display: none;
+    }
+    nav .details-nav {
+        display: none;
+    }
+    .mobile-nav{
+        padding: 10px ;
+        display: block;
+        background-color: #fed700;
+    }
+}

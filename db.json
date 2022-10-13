@@ -1,0 +1,63 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json",
+      "author": "code"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "title": "json",
+      "author": "code"
+    }
+  ],
+  "profile": [
+    {
+      "id": 1,
+      "title": "json",
+      "author": "code"
+    },
+    {
+      "email": "youssif.elhelaly@gmail.com",
+      "username": "youssif",
+      "password": "01152451515",
+      "name": {
+        "firstname": "youssif",
+        "lastname": "elhelaly"
+      },
+      "id": 2
+    },
+    {
+      "email": "youssif.elhelaly@gmail.com",
+      "username": "youssif",
+      "password": "01152451515",
+      "name": {
+        "firstname": "youssif",
+        "lastname": "elhelaly"
+      },
+      "id": 3
+    },
+    {
+      "id": 4,
+      "email": "youssif.elhelaly@gmail.com",
+      "username": "youssif",
+      "password": "01152451515",
+      "name": {
+        "firstname": "youssif",
+        "lastname": "elhelaly"
+      }
+    },
+    {
+      "id": 5,
+      "email": "youssif.elhelaly@gmail.com",
+      "username": "youssif",
+      "password": "01152451515",
+      "name": {
+        "firstname": "youssif",
+        "lastname": "elhelaly"
+      }
+    }
+  ]
+}

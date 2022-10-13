@@ -1,0 +1,77 @@
+.sign .head h2 {
+    position: relative;
+    color: white;
+    font-size: 28px;
+    padding: 15px 0;
+    margin-bottom: 15px;
+}
+
+.sign .head h2::before  {
+    position: absolute;
+    content: "";
+    border-bottom: 1px solid #888;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+}
+
+.sign .head h2::after {
+    position: absolute;
+    content: "";
+    border-bottom: 2px solid #fed200;
+    width: 100px;
+    bottom: 0;
+    left: 0;
+}
+
+.sign .account {
+    position: relative;
+}
+
+.sign .account::before {
+    border-left: 1px solid #888;
+    position: absolute;
+    content: "";
+    left: 50%;
+    height: 100%;
+}
+
+.sign .account::after {
+    position: absolute;
+    content: "or";
+    color: black;
+    background-color: white;
+    border-radius: 50%;
+    padding: 5px 10px;
+    font-size: 20px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50% , -50%);
+}
+
+.sign input.form-control {
+    background-color: #212121;
+    border-color: unset;
+    box-shadow: unset;
+    transition: 0.3s;
+    border-radius: 50px;
+    margin: 5px 0 20px;
+    color: white;
+    border-color: #212121;
+}
+
+.sign input.form-control:foucs {
+    border: 1px solid #1da1f2;
+    background-color: #212121;
+}
+
+.sign .button {
+    background-color: #fff;
+    width: fit-content;
+    padding: 10px 30px;
+    border-radius: 50px;
+    margin: 20px 0;
+    font-weight: 600;
+    color: black;
+    cursor: pointer;
+}

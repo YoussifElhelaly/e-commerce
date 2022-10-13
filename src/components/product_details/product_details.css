@@ -1,0 +1,44 @@
+.productDetails{
+    padding: 0 55px;
+}
+
+.productDetails .img {
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.productDetails .img img {
+    width: 100%;
+    object-fit: contain;
+    height: 100%;
+}
+
+.rate .stars-outer  {
+    position: relative;
+    display: inline-block;
+}
+
+.rate .stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    width: 0%;
+}
+
+.rate .stars-outer::before {
+    content: "\f005 \f005 \f005 \f005 \f005";
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 200;
+    color: #888;
+}
+
+.rate .stars-inner::before {
+    content: "\f005 \f005 \f005 \f005 \f005";
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: gold;
+}

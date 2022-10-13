@@ -1,0 +1,69 @@
+.home {
+    padding: 0 50px;
+    background-image: url(../img/hero.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: calc(100vh - 172px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home h1 {
+    color: white;
+    font-size: 54px;
+    margin: 0;
+    font-weight: 300;
+}
+
+.home h1 span {
+    font-weight: 700;
+    color: white;
+}
+
+.home p {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.home .hot-product {
+    background-color: #1b1a1a;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 10px;
+    position: relative;    
+}
+
+.home .hot-product::before {
+    content: "";
+    position: absolute;
+    border-left: 1px solid grey;
+    height: 80%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50% , -50%);
+}
+
+.home .hot-product .box {
+    padding: 10px;
+}
+
+.fa-fire-flame-curved {
+    color: #e7c400;
+}
+
+.ads {
+    padding: 0 55px;
+}
+
+@media screen and (max-width: 1024px) {
+    .home {
+        min-height: calc(100vh - 60px);
+        padding: 50px 0;
+    }
+    .search {
+        text-align: center;
+    }
+}

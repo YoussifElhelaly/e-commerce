@@ -1,0 +1,43 @@
+.productList{
+    padding: 55px 0;
+}
+
+.productList .title{
+    color: white;
+    position: relative;
+    padding: 10px 0;
+}
+
+.productList .title::before{
+    content: "";
+    position: absolute;
+    border-bottom: 1px solid grey;
+    width: 100%;
+    bottom: 0;
+}
+
+.productList .title::after {
+    content: "";
+    position: absolute;
+    border-bottom: 2px solid #fed700;
+    width: 200px;
+    bottom: 0;
+    left: 0;
+}
+
+.productList .productItem {
+    position: relative;
+    z-index: 123;
+}
+
+.productList .productItem::before {
+    position: absolute;
+    content: "";
+    border-left: 1px solid #2f3336;
+    height: 80%;
+    right: 0px;
+    transition: 0.3s;
+    z-index: -1;
+}
+
+

@@ -1,0 +1,69 @@
+.productFilter {
+    padding:  30px 55px;
+}
+
+.productFilter .title h4{
+    color: white;
+    position: relative;
+    padding-bottom: 15px;
+    font-size: 20px;
+}
+
+.productFilter .title h4::before {
+    position: absolute;
+    content: "";
+    border-bottom: 1px solid grey;
+    bottom: 0;
+    width: 100%;
+}
+
+.productFilter .title h4::after {
+    position: absolute;
+    content: "";
+    border-bottom: 2px solid #fed700;
+    bottom: 0;
+    width: 100px;
+    left: 0;
+
+}
+
+.productFilter .card-product {
+    padding:  10px 0;
+}
+
+.productFilter .card-product .img{
+    min-width: 80px;
+    margin-right: 10px;
+    max-width: 80px;
+    background-color: white;
+    max-height: 80px;
+    min-height: 80px;
+    border-radius: 5px;
+}
+
+.productFilter .card-product .img img{
+    width: 100%;
+    object-fit: contain;    
+    height: 100%;
+}
+
+.productFilter .card-product .text h5{
+    color: white;
+    font-size: 15px;
+    margin: 5px 0;
+}
+
+.productFilter .card-product .text .price {
+    color: white;
+    font-weight: 300;
+}
+
+.productFilter .card-product .text .price .oldPrice {
+    color: grey;
+    text-decoration: line-through;
+    font-size: 12px;
+}
+
+.productFilter .card-product .text .price h6 {
+    color: #e0245e;
+}

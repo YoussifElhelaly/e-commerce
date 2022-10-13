@@ -1,0 +1,49 @@
+#search {
+
+    position: relative;
+
+}
+
+#search input {
+    padding: 25px;
+    border-radius: 25px;
+    outline: unset;
+    border: unset;
+    background-color: #4c4c4c;
+    box-shadow: unset;
+    color: white;
+    transition: 0.1s;
+}
+
+#search input::placeholder{
+    color: white;
+}
+
+#search input::target-text,
+#search input:target,
+#search input:active,
+#search input:focus{
+    box-shadow: unset;
+    background-color: #181818;
+}
+
+#search button {
+    position: absolute;
+    right: -1px;
+    top: 0;
+    background-color: #e7c400;
+    height: 100%;
+    border-radius:0 50px 50px 0;
+    padding:0 20px;
+    color: white;
+    transition: 0.3s;
+}
+
+#search button:hover{
+    background: black;
+    color: white;
+}
+
+ #search button:hover i {
+    color: white;
+ }
