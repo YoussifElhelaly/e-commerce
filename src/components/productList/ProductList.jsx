@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams , useNavigate } from "react-router-dom"
-import ProductCate from "../productCate/productCate"
+import { useParams  } from "react-router-dom"
 import ProductItem from "../product_Item/Product_Item"
 import "./productList.css"
 
@@ -15,7 +14,7 @@ function ProdectList(props) {
     const [hotProduct, setHotProduct] = useState([])
     var title = ""
     if (props.api_url === undefined) {
-        api_url = `https://fakestoreapi.com/products/category/${params.title}`
+        api_url = `https://fakestoreapi.com/products/`
     } else {
          api_url = props.api_url
     }
@@ -30,7 +29,7 @@ function ProdectList(props) {
         fetch(api_url)
             .then((res) => res.json())
             .then((data) => setHotProduct(data))
-    }, [])
+    }, [api_url])
     
 return (
         <div className="productList">

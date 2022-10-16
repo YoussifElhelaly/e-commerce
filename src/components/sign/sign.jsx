@@ -6,6 +6,7 @@ import { useRecoilState } from 'recoil'
 import loginState from '../../atoms/loginAtom'
 import usersData from '../../atoms/users'
 import userInfo from '../../atoms/userInfo'
+import Address from './Address/Address'
 
 
 
@@ -18,11 +19,10 @@ function Sign() {
     const [stateLogin , setStateLogin] = useRecoilState(loginState)
     const [usersInfo ,setusersInfo] = useRecoilState(usersData)
     const [currentUser ,setCurrentUser] = useRecoilState(userInfo)
-
     let element
     let users = usersInfo
     let check = 0
-    let userFake = users
+    // let userFake = users 
     // useEffect()
 
     // users.push({userName:"helaly"}) 
@@ -35,21 +35,16 @@ function Sign() {
         user 
         ]
         )
-        console.log(setusersInfo)
     }
     
 
     useEffect(() => {
         localStorage.setItem("users", JSON.stringify(usersInfo))
     }, [usersInfo])
-    
-    useEffect(() => {
-        console.log(currentUser)
-    }, [currentUser])
 
     function signUp(userName, email, password) {
-        console.log(users)
         let userUP = {
+            userID: (users.length+1),
             userName: userName,
             email: email,
             password: password,
@@ -64,7 +59,6 @@ function Sign() {
                 if (user.email === email || user.userName === userName) {
                     check += 1                     
                 }
-                console.log(check)
             } 
             if (check !== 0 ) {
                     Swal.fire({
@@ -85,7 +79,6 @@ function Sign() {
                 },)
                 addUser(userUP)
                 localStorage.setItem("users", JSON.stringify(usersInfo))
-                console.log(usersInfo)
             }
         } else {
             Swal.fire({
@@ -96,17 +89,13 @@ function Sign() {
                 confirmButtonColor: "#fed200"
             },)
                 addUser(userUP)
-                console.log(userUP)
                 localStorage.setItem("users", JSON.stringify(users))
             }        
         }
 
     function login(userName, pass) {
-        console.log(users)
-
         if (userName.includes("@")) {
             for (let userLogin of users) {
-                console.log(userLogin.email)
                 if (userLogin.email === userName && userLogin.password === pass) {
                      Swal.fire({
                         icon: 'success',
@@ -118,8 +107,6 @@ function Sign() {
                     setStateLogin(true)
                     setCurrentUser(userLogin)
                     localStorage.setItem("currentUser" , JSON.stringify(userLogin) )
-                    console.log(`this is ${currentUser}`)
-                    console.log(userLogin)
                     break;
                 } else {
                     
@@ -152,7 +139,6 @@ function Sign() {
                     setStateLogin(true)
                     setCurrentUser(user)
                     localStorage.setItem("currentUser" , JSON.stringify(user) )
-                    console.log(user)
                     break;
 
                 } else {
@@ -167,16 +153,10 @@ function Sign() {
                         
                         
                     },)
-                    console.log("a7a error user")
-                }
-            
+                }   
             }
-        }
-        
-        
+        }   
     }
-
-    console.log(currentUser)
 
     if (stateLogin) {
 
@@ -188,16 +168,16 @@ function Sign() {
                 <div className="row">
                     <div className="col-3">
                         <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <button className="nav-link active text-left" id="v-pills-Dashboard-tab" data-toggle="pill" data-target="#v-pills-Dashboard" type="button" role="tab" aria-controls="v-pills-Dashboard" aria-selected="true">Dashboard</button>
-                        <button className="nav-link text-left" id="v-pills-Orders-tab" data-toggle="pill" data-target="#v-pills-Orders" type="button" role="tab" aria-controls="v-pills-Orders" aria-selected="false">Orders</button>
-                        <button className="nav-link text-left" id="v-pills-Downloads-tab" data-toggle="pill" data-target="#v-pills-Downloads" type="button" role="tab" aria-controls="v-pills-Downloads" aria-selected="false">Downloads</button>
-                        <button className="nav-link text-left" id="v-pills-Addresses-tab" data-toggle="pill" data-target="#v-pills-Addresses" type="button" role="tab" aria-controls="v-pills-Addresses" aria-selected="false">Addresses</button>
-                        <button className="nav-link text-left" id="v-pills-Account-tab" data-toggle="pill" data-target="#v-pills-Account" type="button" role="tab" aria-controls="v-pills-Account" aria-selected="false">Account Details</button>
-                        <button className="nav-link"onClick={() => {
+                        <button className="nav-link active text-left" id="v-pills-Dashboard-tab" data-toggle="pill" data-target="#v-pills-Dashboard" type="button" role="tab" aria-controls="v-pills-Dashboard" aria-selected="true">Dashboard<i className="fa-solid fa-gauge-simple-high"></i></button>
+                        <button className="nav-link text-left" id="v-pills-Orders-tab" data-toggle="pill" data-target="#v-pills-Orders" type="button" role="tab" aria-controls="v-pills-Orders" aria-selected="false">Orders<i className="fa-solid fa-basket-shopping"></i></button>
+                        <button className="nav-link text-left" id="v-pills-Downloads-tab" data-toggle="pill" data-target="#v-pills-Downloads" type="button" role="tab" aria-controls="v-pills-Downloads" aria-selected="false">Downloads<i className="fa-solid fa-file"></i></button>
+                        <button className="nav-link text-left" id="v-pills-Addresses-tab" data-toggle="pill" data-target="#v-pills-Addresses" type="button" role="tab" aria-controls="v-pills-Addresses" aria-selected="false">Addresses<i className="fa-solid fa-house-chimney"></i></button>
+                        <button className="nav-link text-left" id="v-pills-Account-tab" data-toggle="pill" data-target="#v-pills-Account" type="button" role="tab" aria-controls="v-pills-Account" aria-selected="false">Account Details<i class="fa-solid fa-user"></i></button>
+                        <button className="nav-link logOut text-left"onClick={() => {
                             localStorage.setItem("loginState" , false)
                             sessionStorage.setItem("loginState", false)
                             setStateLogin(false)
-                            }} >Logout</button>
+                            }} >Logout<i class="fa-solid fa-arrow-right-from-bracket"></i></button>
                         </div>
                     </div>
                     <div className="col-9">
@@ -206,12 +186,20 @@ function Sign() {
                                 Hello {currentUser.userName}
                         </div>
                             <div className="tab-pane fade" id="v-pills-Orders" role="tabpanel" aria-labelledby="v-pills-Orders-tab">
-                                No order has been made yet
+                                <div className="notFound">
+                                    No order has been made yet
+                                    <Link to="../productList" className='ml-auto'>Browse Products</Link>
+                                </div>
                         </div>
                             <div className="tab-pane fade" id="v-pills-Downloads" role="tabpanel" aria-labelledby="v-pills-Downloads-tab">
-                                No order has been made yet
+                                <div className="notFound">
+                                    No downloads available yet
+                                    <Link to="../productList" className='ml-auto'>Browse Products</Link>
+                                </div>
                         </div>
-                        <div className="tab-pane fade" id="v-pills-Addresses" role="tabpanel" aria-labelledby="v-pills-Addresses-tab">Addresses</div>
+                            <div className="tab-pane fade" id="v-pills-Addresses" role="tabpanel" aria-labelledby="v-pills-Addresses-tab">
+                                <Address/>
+                        </div>
                         <div className="tab-pane fade" id="v-pills-Account" role="tabpanel" aria-labelledby="v-pills-Account-tab">Account Details</div>
                         </div>
                     </div>
@@ -245,17 +233,16 @@ function Sign() {
                                             let user = document.getElementById("user-in").value
                                             let pass = document.getElementById("pass-in").value
                                             let gridCheck = document.getElementById("gridCheck").checked
-                                            console.log(gridCheck)
                                             if (pass !== "" && user !== "") {
                                                 login(user, pass)
                                                 user = ""
                                                 pass = ""
-                                     }
-                                     if (gridCheck) {
-                                         localStorage.setItem("loginState" , true)
-                                     } else (
-                                         sessionStorage.setItem("loginState" , true)
-                                     )
+                                    }
+                                    if (gridCheck) {
+                                        localStorage.setItem("loginState" , true)
+                                    } else (
+                                        sessionStorage.setItem("loginState" , true)
+                                    )
                                         }}>Log in</div>
                                         <Link>Lost Your Password?</Link>
                                     </form>

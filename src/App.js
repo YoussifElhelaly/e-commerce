@@ -39,6 +39,7 @@ function App() {
           <Route path="Compare" element={<Compare />} />
           <Route path="Whishlist" element={<Whishlist />} />
           <Route path="product/:id" element={<Product_details />} />
+          <Route path="productList" element={<ProdectList />} />
           <Route path="productList/:title" element={<ProdectList />} />
           <Route path="account" element={<Sign />} />
           <Route path="FAQ" element={<FAQ />} />

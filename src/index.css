@@ -6,6 +6,19 @@ body {
   background-color: #151515;
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: #212121;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #fed200;
+}
+
 *{
   box-sizing: border-box;
   margin: 0;
@@ -14,6 +27,7 @@ body {
 
 h1,h2,h3,h4,h5,h6{
   margin: 0;
+  color: inherit;
 }
 
 ul {
