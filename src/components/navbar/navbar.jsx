@@ -226,9 +226,9 @@ function Navbar() {
                                     </Link>
                                     </li>
                                     <li>
-                                        <a href="#" className='user'>
+                                        <Link to="/account" className='user'>
                                         <i className="fa-regular fa-user"></i>
-                                        </a>
+                                        </Link>
                                         <div className="user-log">
                                         </div>
                                     </li>
