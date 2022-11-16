@@ -114,3 +114,12 @@
     color: black;
     cursor: pointer;
 }
+
+@media(max-width : 768px) {
+    .sign .account::after {
+        content: unset;
+    }
+    .sign .account::before {
+        content: unset;
+    }
+}

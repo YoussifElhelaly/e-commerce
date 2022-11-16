@@ -12,6 +12,5 @@ const usersData = atom({
     default: users
 })
 
-console.log(users)
 
 export default usersData

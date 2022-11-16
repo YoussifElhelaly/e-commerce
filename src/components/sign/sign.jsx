@@ -7,28 +7,22 @@ import loginState from '../../atoms/loginAtom'
 import usersData from '../../atoms/users'
 import userInfo from '../../atoms/userInfo'
 import Address from './Address/Address'
-
-
-
-
+import cart from '../../atoms/UserCart'
+import GlobalCart from '../../atoms/GlobalCart'
+import { Global } from '@emotion/react'
 
 function Sign() {
-
-
-
     const [stateLogin , setStateLogin] = useRecoilState(loginState)
     const [usersInfo ,setusersInfo] = useRecoilState(usersData)
-    const [currentUser ,setCurrentUser] = useRecoilState(userInfo)
+    const [currentUser, setCurrentUser] = useRecoilState(userInfo)
+    const [cartGlobal, setCartGlobal] = useRecoilState(GlobalCart)
+    const [cartUser, setCartUser] = useRecoilState(cart)
+    const id = currentUser?.userID
+
+    
     let element
     let users = usersInfo
     let check = 0
-    // let userFake = users 
-    // useEffect()
-
-    // users.push({userName:"helaly"}) 
-
-    
-
     let addUser = (user) => {
         setusersInfo((prev) => [
         ...prev,    
@@ -36,20 +30,40 @@ function Sign() {
         ]
         )
     }
-    
-
     useEffect(() => {
         localStorage.setItem("users", JSON.stringify(usersInfo))
-    }, [usersInfo])
+        
+    }, [usersInfo,stateLogin])
 
-    function signUp(userName, email, password) {
+    function replaceItemAtIndex(arr, index, newValue) {
+    return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
+    }  
+
+    function editItemText(value ,user){
+        let idA7a = user.userID - 1
+        let bta3 = user?.cart
+        console.log(bta3)
+        bta3.concat(value) 
+        let newList = replaceItemAtIndex(users, idA7a, {
+            ...user,
+            cart: bta3.concat(value) ,
+        });
+        setusersInfo(newList)
+        localStorage.setItem("users" , JSON.stringify(newList))
+        setCurrentUser(newList[idA7a])
+        localStorage.setItem("currentUser" ,JSON.stringify(newList[idA7a]))
+};
+
+    
+
+    function signUp(userName, email, password, cartCurrent) {
         let userUP = {
             userID: (users.length+1),
             userName: userName,
             email: email,
             password: password,
             wishList: [],
-            cart: [],
+            cart: cartCurrent,
             addressData: [],
             orders:[]
         }
@@ -93,7 +107,7 @@ function Sign() {
             }        
         }
 
-    function login(userName, pass) {
+     function login(userName, pass) {
         if (userName.includes("@")) {
             for (let userLogin of users) {
                 if (userLogin.email === userName && userLogin.password === pass) {
@@ -106,7 +120,11 @@ function Sign() {
                      },)
                     setStateLogin(true)
                     setCurrentUser(userLogin)
-                    localStorage.setItem("currentUser" , JSON.stringify(userLogin) )
+                    // localStorage.setItem("currentUser" , JSON.stringify(userLogin) )
+                    editItemText(cartGlobal,userLogin)
+                    setCartGlobal([])
+                    // console.log(editItemText(cartGlobal,userLogin))
+
                     break;
                 } else {
                     
@@ -138,7 +156,11 @@ function Sign() {
                     },)
                     setStateLogin(true)
                     setCurrentUser(user)
-                    localStorage.setItem("currentUser" , JSON.stringify(user) )
+                    editItemText(cartGlobal,user)
+                    setCartGlobal([])
+                    localStorage.setItem("globalCart",JSON.stringify([]))
+
+
                     break;
 
                 } else {
@@ -159,7 +181,6 @@ function Sign() {
     }
 
     if (stateLogin) {
-
         element =
             <>
             <div className="logged">
@@ -177,6 +198,8 @@ function Sign() {
                             localStorage.setItem("loginState" , false)
                             sessionStorage.setItem("loginState", false)
                             setStateLogin(false)
+                            localStorage.setItem("currentUser", JSON.stringify({}))
+                            setCurrentUser({})
                             }} >Logout<i class="fa-solid fa-arrow-right-from-bracket"></i></button>
                         </div>
                     </div>
@@ -208,9 +231,9 @@ function Sign() {
             </>
     } else {
          element = <div className="account">
-                    <div className="row">
+                    <div className="row no-gutters">
                         <div className="col-md-6">
-                            <div className="sign-in px-5">
+                            <div className="sign-in px-1 px-md-5">
                                 <div className="head">
                                     <h2>Login</h2>
                                     <p>Welcome back! Sign in to your account.</p>
@@ -237,20 +260,20 @@ function Sign() {
                                                 login(user, pass)
                                                 user = ""
                                                 pass = ""
-                                    }
-                                    if (gridCheck) {
-                                        localStorage.setItem("loginState" , true)
-                                    } else (
-                                        sessionStorage.setItem("loginState" , true)
-                                    )
-                                        }}>Log in</div>
+                                            }
+                                            if (gridCheck) {
+                                                localStorage.setItem("loginState" , true)
+                                            } else (
+                                                sessionStorage.setItem("loginState" , true)
+                                                )
+                                            }}>Log in</div>
                                         <Link>Lost Your Password?</Link>
                                     </form>
                                 </div>
                             </div>
                         </div>
                         <div className="col-md-6">
-                            <div className="sign-up px-5">
+                            <div className="sign-up px-1 px-md-5">
                                 <div className="head">
                                     <h2>Register</h2>
                                     <p>Create new account today to reap the benefits of a personalized shopping experience.</p>
@@ -269,7 +292,7 @@ function Sign() {
                                             let email = document.getElementById("emailUp").value
                                             let pass = document.getElementById("passUp").value
                                             if (userName !== "" && email !== "" && pass !== "" ) {
-                                                signUp(userName, email, pass)
+                                                signUp(userName, email, pass ,cartUser )
                                             }
                                         }
                                         }

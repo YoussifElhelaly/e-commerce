@@ -1,16 +1,60 @@
 import './style.css'
 import {Link} from "react-router-dom";
+import Search from '../search/Search';
+import { useRecoilValue } from 'recoil';
+import GlobalCart from '../../atoms/GlobalCart';
+import { Global } from '@emotion/react';
+import loginState from '../../atoms/loginAtom';
+import userInfo from '../../atoms/userInfo';
 
 function Navbar() {
+
+
+    let orders = useRecoilValue(GlobalCart)
+    let sum = 0
+    const stateLogin = useRecoilValue(loginState)
+    const User = useRecoilValue(userInfo)
+
+    if (stateLogin) {
+        orders = User.cart
+    }
+
+    const money = () => {
+        for (let price of orders) {
+            sum += (+(price.product?.price) * +(price.quantity))
+        }
+    }
+
+    money()
+
     return (
         <nav>
             <div className="container-fluid">
+                <div className="menu" id="menu">
+                                <button onClick={() => {
+                                    document.getElementById("menu").style.left = "-400px"
+                                }}><i className="fa-solid fa-xmark"></i></button>
+                                <ul>
+                                            <li>
+                                                <Link to="/">Home</Link>
+                                                </li>
+                                            <li>
+                                                <Link to="/about">About Us</Link>
+                                                </li>
+                                            <li>
+                                                <Link to="/feature">Feature</Link>
+                                                </li>
+                                            <li>
+                                                <Link to="contact-us">Contact Us</Link>
+                                                </li>
+                                </ul>
+                            </div>
                 <div className="info-nav">
                     <div className="row d-none d-lg-flex justify-content-between">
-                        <div className="col-6">
-                            <a href="#home">Welcome to Worldwide Electronics Store</a>
+                        <div className="col-4">
+                            <Link to="../">Welcome to Worldwide Electronics Store</Link>
                         </div>
-                        <div className="col-6">
+                        <div className="col-8">
                             <ul className="d-flex justify-content-end">
                                 <li>
                                     <a href="#"><i className="fa-solid fa-location-dot"></i> Store Locator</a>
@@ -19,10 +63,10 @@ function Navbar() {
                                     <a href="#"><i className="fa-solid fa-truck"></i> Track Your Order</a>
                                 </li>
                                 <li>
-                                    <a href="#"><i className="fa-solid fa-bag-shopping"></i> Shop</a>
+                                    <Link to="../cart"><i className="fa-solid fa-bag-shopping"></i> Shop</Link>
                                 </li>
                                 <li>
-                                    <a href="#"><i className="fa-regular fa-user"></i> My Account</a>
+                                    <Link to="../account"><i className="fa-regular fa-user"></i> My Account</Link>
                                 </li>
                                 <li>
                                     <a href="#"></a>
@@ -35,7 +79,7 @@ function Navbar() {
                     <div className="row align-items-center">
                         <div className="col-3">
                             <div className="logo d-flex align-items-end justify-content-between">
-                                <a href="#" className='logo-icon'>
+                                <Link to="../" className='logo-icon'>
                         <svg version="1.1" x="0px" y="0px" width="156px" height="37px" viewBox="0 0 175.748 42.52" enableBackground="new 0 0 175.748 42.52">
                             <ellipse fillRule="evenodd" clipRule="evenodd" fill="#FDD700" cx="170.05" cy="36.341" rx="5.32" ry="5.367"></ellipse>
                             <path fillRule="evenodd" clipRule="evenodd" fill="#fff" d="M30.514,0.71c-0.034,0.003-0.066,0.008-0.056,0.056
@@ -74,29 +118,14 @@ function Navbar() {
 						c-1.293,2.365-1.951,5.158-1.729,8.408c0.209,3.053,1.191,5.496,2.619,7.508c2.842,4.004,7.385,6.973,13.656,6.377
 						c5.976-0.568,9.574-3.936,11.816-8.354c-0.141-0.271-0.221-0.604-0.336-0.902C92.929,31.364,90.843,30.485,88.812,29.55z"></path>
                         </svg>
-                                </a>
+                                </Link>
                             </div>
                         </div>
-                        <div className="col-6">
-                            <div className="pages d-flex align-itmes-center">
-
-                            <ul className='d-flex m-0'>
-                                <li>
-                                    <Link to="/">Home</Link>
-                                    </li>
-                                <li>
-                                    <Link to="/about">About Us</Link>
-                                    </li>
-                                <li>
-                                    <Link to="/feature">Feature</Link>
-                                    </li>
-                                <li>
-                                    <Link to="contact-us">Contact Us</Link>
-                                    </li>
-                                </ul>
-                                
-                            </div>
-
+                        <div className="col-6 d-flex">
+                            <button className='menu-btn' onClick={() => {
+                                    document.getElementById("menu").style.left = 0
+                                }}><i className="fa-solid fa-bars"></i></button>
+                            <Search/>
                         </div>
                         <div className="col-3">
                             <div className="user-nav d-flex justify-content-end">
@@ -129,10 +158,11 @@ function Navbar() {
                                         </div>
                                     </li>
                                     <li>
-                                        <a href="#" className='cart d-flex'>
+                                        <Link to="../cart" className='cart d-flex'>
                                             <i className="fa-solid fa-bag-shopping"></i>
-                                            <span>$00.00</span>
-                                        </a>
+                                            <span className="numbers">{orders.length}</span>
+                                            <span>${Math.round(sum)}</span>
+                                        </Link>
                                     </li>
                                 </ul>
                                 
@@ -164,13 +194,13 @@ function Navbar() {
                                     </li>
                     </ul>
                 </div>
-                <div className="row align-items-center justify-content-between">
+                <div className="row align-items-center justify-content-between m-0">
                         <div className="col-5">
                         <div className="logo d-flex align-items-center">
                             <button className='menu-btn' onClick={() => {
                                     document.getElementById("menu").style.left = 0
                                 }}><i className="fa-solid fa-bars"></i></button>
-                                <a href="#" className='logo-icon ml-3'>
+                                <Link to="../" className='logo-icon ml-3'>
                                     <svg version="1.1" x="0px" y="0px" width="156px" height="37px" viewBox="0 0 175.748 42.52" enableBackground="new 0 0 175.748 42.52">
                             <ellipse fillRule="evenodd" clipRule="evenodd" fill="#FDD700" cx="170.05" cy="36.341" rx="5.32" ry="5.367"></ellipse>
                             <path fillRule="evenodd" clipRule="evenodd" fill="#333e48" d="M30.514,0.71c-0.034,0.003-0.066,0.008-0.056,0.056
@@ -209,7 +239,7 @@ function Navbar() {
 						c-1.293,2.365-1.951,5.158-1.729,8.408c0.209,3.053,1.191,5.496,2.619,7.508c2.842,4.004,7.385,6.973,13.656,6.377
 						c5.976-0.568,9.574-3.936,11.816-8.354c-0.141-0.271-0.221-0.604-0.336-0.902C92.929,31.364,90.843,30.485,88.812,29.55z"></path>
                                     </svg>
-                                </a>
+                                </Link>
                             </div>
                     </div>
                     <div className="col-5">
@@ -226,16 +256,16 @@ function Navbar() {
                                     </Link>
                                     </li>
                                     <li>
-                                        <Link to="/account" className='user'>
+                                        <Link Link="../account" className='user'>
                                         <i className="fa-regular fa-user"></i>
                                         </Link>
                                         <div className="user-log">
                                         </div>
                                     </li>
                                     <li>
-                                        <a href="#" className='cart d-flex'>
+                                        <Link to="../cart" className='cart d-flex'>
                                             <i className="fa-solid fa-bag-shopping"></i>
-                                        </a>
+                                        </Link>
                                     </li>
                                 </ul>
                                 

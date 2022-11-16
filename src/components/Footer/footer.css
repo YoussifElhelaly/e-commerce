@@ -1,0 +1,55 @@
+footer {
+    padding: 70px 55px;
+}
+
+footer .info .call{
+    margin: 20px 0;
+}
+
+footer .info .call i {
+    font-size: 50px;
+    color: #fed200;
+    margin-right: 20px;
+}
+
+footer .info .call span {
+    font-size: 14px;
+    color: #ccc;
+}
+
+footer .info .call p {
+    color: white;
+    font-size: 22px;
+}
+
+footer .info h6 ,p {
+    color: white;
+}
+
+footer .info .social-icons i{
+    font-size: 24px;
+    margin: 10px;
+}
+
+footer .right ul{
+    color: white;
+    font-size: 14px;
+}
+
+footer .right ul h6 {
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+footer .right ul li {
+    margin: 10px 0;
+    color: #ddd;
+}
+
+.copy {
+    background-color: #212121;
+}
+
+.copy .right img{
+    width: 300px;
+}

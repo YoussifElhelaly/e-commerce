@@ -23,22 +23,18 @@ function Address() {
             userName: currentUser.userName,
             userID: currentUser.userID
         })
-        // updateUser(id)
     }
-    
     
     useEffect(() => {
         localStorage.setItem("currentUser" , JSON.stringify(currentUser))
         
     }, [currentUser])
 
-    console.log(id)
-
     const editItemText = (value) => {
-    const newList = replaceItemAtIndex(users, (id - 1), {
-      ...currentUser,
-      addressData: value,
-    });
+        const newList = replaceItemAtIndex(users, (id - 1), {
+        ...currentUser,
+        addressData: value,
+        });
      setUsers(newList)
      localStorage.setItem("users" , JSON.stringify(newList))
     };
@@ -46,45 +42,18 @@ function Address() {
     function replaceItemAtIndex(arr, index, newValue) {
     return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
     }       
-    
-     function inputs() {
-        let first = document.getElementById("first_name")   
-        let last = document.getElementById("last_name") 
-        let company = document.getElementById("company") 
-        let country = document.getElementById("country") 
-        let street = document.getElementById("street") 
-        let city = document.getElementById("city") 
-        let state = document.getElementById("state") 
-        let zip = document.getElementById("ZIP")
-        first.value = currentUser.addressData.firstName
-        // last.value = currentUser.addressData.lastName
-        // company.value = currentUser.addressData.company
-        // country.value = currentUser.addressData.country
-        // street.value = currentUser.addressData.street
-        // city.value = currentUser.addressData.city
-        // state.value = currentUser.addressData.state
-        // zip.value = currentUser.addressData.ZIP
-        console.log( currentUser.addressData.firstName)
-        console.log( currentUser.addressData.lastName)
-        console.log( currentUser.addressData.company)
-        console.log( currentUser.addressData.country)
-        console.log( currentUser.addressData.street)
-        console.log( currentUser.addressData.city)
-        console.log( currentUser.addressData.state)
-        console.log( currentUser.addressData.ZIP)
-    }
 
-    if (currentUser.addressData.length !== 0) {
+    if (currentUser.addressData?.length !== 0) {
         AddEdit = "Edit"
         addressDate =
         <>
             <ul>
-                <li>Your Name : {currentUser.addressData.firstName} {currentUser.addressData.lastName}</li>
-                <li>Your ZIP Code : {currentUser.addressData.ZIP}</li>
-                <li>Your City : {currentUser.addressData.city}</li>
-                <li>Your Country : {currentUser.addressData.country}</li>
-                <li>Your State : {currentUser.addressData.state}</li>
-                <li>Your Street : {currentUser.addressData.street}</li>
+                <li>Your Name : {currentUser.addressData?.firstName} {currentUser.addressData?.lastName}</li>
+                <li>Your ZIP Code : {currentUser.addressData?.ZIP}</li>
+                <li>Your City : {currentUser.addressData?.city}</li>
+                <li>Your Country : {currentUser.addressData?.country}</li>
+                <li>Your State : {currentUser.addressData?.state}</li>
+                <li>Your Street : {currentUser.addressData?.street}</li>
             </ul>
             </> 
     } else {
@@ -96,24 +65,22 @@ function Address() {
         addressDate =
             <div className="form">
                 <form>
-                    
                     <label>First Name *</label>
-                    <input value={null} type="text" className="form-control" id="first_name" required/>
+                    <input defaultValue={currentUser.addressData.firstName} type="text" className="form-control" id="first_name" required/>
                     <label>Last Name *</label>
-                    <input  type="text" className="form-control" id="last_name" required/>
+                    <input defaultValue={currentUser.addressData.lastName} type="text" className="form-control" id="last_name" required/>
                     <label>Company Name (optional)</label>
-                    <input type="text" className="form-control" id="company" />
+                    <input defaultValue={currentUser.addressData.company} type="text" className="form-control" id="company" />
                     <label>Country / Region *</label>    
-                    <input value="" type="text" className="form-control" id='country' required />
+                    <input defaultValue={currentUser.addressData.country} type="text" className="form-control" id='country' required />
                     <label>street address *</label>    
-                    <input value="" type="text" className="form-control" id='street' required />
+                    <input defaultValue={currentUser.addressData.street} type="text" className="form-control" id='street' required />
                     <label>Town / City *</label>    
-                    <input value="" type="text" className="form-control" id='city' required />
+                    <input defaultValue={currentUser.addressData.city} type="text" className="form-control" id='city' required />
                     <label>State / Country *</label>    
-                    <input value="" type="text" className="form-control" id='state' required />
+                    <input defaultValue={currentUser.addressData.state} type="text" className="form-control" id='state' required />
                     <label>PostCode / ZIP *</label>    
-                    <input value="" type="num" className="form-control" max={5} id="ZIP" required />
-                    {inputs()}
+                    <input defaultValue={currentUser.addressData.ZIP} type="num" className="form-control" max={5} id="ZIP" required />
                     <div className='button d-block' onClick={() => {
                         let first_name = document.getElementById("first_name").value
                         let last_name = document.getElementById("last_name").value
@@ -133,17 +100,13 @@ function Address() {
                             state: state,
                             ZIP: ZIP,
                         }
+                        setMode(false)
                         addAddress(newAddress)
                         editItemText(newAddress)
-
-                        // updateUser(id)
                     }}>Save</div>
-                    
                 </form>
         </div>
     }
-
-   
 
     return (
         <div className="address">
@@ -151,6 +114,7 @@ function Address() {
                 <h2>Shipping Address</h2>
                 <Link onClick={() => {
                     setMode(current => !current);
+                    
                 }}>{ AddEdit }</Link>
             </div>
             {addressDate}

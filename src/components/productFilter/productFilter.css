@@ -41,6 +41,10 @@
     border-radius: 5px;
 }
 
+.productFilter .card-product .img.loading {
+    background-color: transparent;
+}
+
 .productFilter .card-product .img img{
     width: 100%;
     object-fit: contain;    

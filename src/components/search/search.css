@@ -1,7 +1,7 @@
 #search {
 
     position: relative;
-
+    flex-grow: 1;
 }
 
 #search input {
@@ -9,7 +9,7 @@
     border-radius: 25px;
     outline: unset;
     border: unset;
-    background-color: #4c4c4c;
+    background-color: #212121;
     box-shadow: unset;
     color: white;
     transition: 0.1s;
@@ -24,7 +24,6 @@
 #search input:active,
 #search input:focus{
     box-shadow: unset;
-    background-color: #181818;
 }
 
 #search button {

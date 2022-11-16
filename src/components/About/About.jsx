@@ -1,12 +1,12 @@
 import './about.css'
-import img1 from '../img/3column1.jpg'
-import img2 from '../img/3column2.jpg'
-import img3 from '../img/3column3.jpg'
-import team1 from '../img/people1.jpg'
-import team2 from '../img/people2.jpg'
-import team3 from '../img/people3.jpg'
-import team4 from '../img/people4.jpg'
-import team5 from '../img/people5.jpg'
+import img1 from '../img/3column1.webp'
+import img2 from '../img/3column2.webp'
+import img3 from '../img/3column3.webp'
+import team1 from '../img/people1.webp'
+import team2 from '../img/people2.webp'
+import team3 from '../img/people3.webp'
+import team4 from '../img/people4.webp'
+import team5 from '../img/people5.webp'
 
 function About() {
     return (

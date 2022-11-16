@@ -1,0 +1,30 @@
+.wishlist .list table .img{
+    width: 120px;
+    height: 120px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.wishlist .list table .img img {
+    height: 100%;
+    object-fit: contain;
+}
+
+.wishlist .list table button {
+    background-color: transparent;
+    border: unset;
+    font-size: 32px;
+    margin-right: 50px;
+}
+
+.wishlist .list table .toCart {
+    background-color: #e7c400;
+    border-radius: 10px !important;
+    margin-left: 40px;
+    font-size: 18px;
+}
+
+.wishlist .list table td {
+    vertical-align: middle;
+}

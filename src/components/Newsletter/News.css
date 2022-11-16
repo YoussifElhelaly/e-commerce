@@ -1,0 +1,40 @@
+.news {
+    background-color: #fed200;
+    padding: 10px 0;
+}
+
+.news h3 {
+    color: #212121;
+    font-weight: 300;
+    font-size: 24px;
+}
+
+.news p {
+    color: #212121;
+    font-weight: 500;
+    margin: 10px 0;
+}
+
+.news p span {
+    font-weight: 700;
+}
+
+.news form {
+    display: flex;
+}
+
+.news form input {
+    border-radius: 50px 0 0 50px;
+    background-color: #212121;
+    border: unset;
+    height: 100%;
+    padding: 10px 40px;
+}
+
+.news form button {
+    background-color: #181818;
+    border-radius: 0 50px 50px 0;
+    padding: 10px 40px ;
+    border: unset;
+    color: white;
+}

@@ -7,14 +7,14 @@ nav {
     position: relative;
 }
 
-nav::before {
+/* nav .info-nav::before {
     position: absolute;
     content: "";
     border-top: 1px solid grey;
     width: 100%;
     left: 0;
     top: 35px;
-}
+} */
 
 nav .info-nav a{
     font-size: 13px;
@@ -58,6 +58,7 @@ nav .details-nav .pages ul li {
 
 nav .details-nav .user-nav ul {
     padding: 0 15px;
+    margin: 0;
 }
 
 nav .details-nav .user-nav ul li{
@@ -70,6 +71,21 @@ nav .details-nav .user-nav ul li{
 
 nav .details-nav .user-nav ul li i{
     color: white;
+}
+
+nav .details-nav .user-nav ul li .cart {
+    position: relative;
+}
+
+nav .details-nav .user-nav ul li .cart .numbers {
+    position: absolute;
+    background-color: #fed700;
+    left: 8px;
+    font-size: 14px;
+    top: 10px;
+    padding: 0 5px;
+    border-radius: 50%;
+    color: #212121;
 }
 
 
@@ -134,14 +150,14 @@ nav .details-nav .user-nav ul li span {
     display: none;
 } 
 
-.mobile-nav .menu-btn {
+.menu-btn {
     background-color: transparent;
     border: none;
     font-size: 28px;
     color: #333e48;
 }
 
-.mobile-nav .menu {
+#menu {
     position: absolute;
     top: 0;
     left: -400px;
@@ -155,17 +171,17 @@ nav .details-nav .user-nav ul li span {
     transition: 0.3s;
 }
 
-.mobile-nav .menu ul{
+#menu ul{
     margin-top: 10px;
 }
 
-.mobile-nav .menu ul li{
+#menu ul li{
     color: white;
     padding: 10px;
     margin: 0 100px;
 }
 
-.mobile-nav .menu button {
+#menu button {
     background-color: transparent;
     border: none;
     font-size: 28px;
@@ -190,5 +206,15 @@ nav .details-nav .user-nav ul li span {
         padding: 10px ;
         display: block;
         background-color: #fed700;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .menu-btn {
+        color: white;
+        margin-right: 25px;
+    }
+    nav .details-nav .user-nav ul li {
+        margin: 5px 10px;
     }
 }

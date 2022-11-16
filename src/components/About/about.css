@@ -1,5 +1,5 @@
 .about-us .main {
-    background-image: url(../img/Header.jpg);
+    background-image: url(../img/Header.webp);
     height: calc(100vh - 60px);
     display: flex;
     justify-content: center;
