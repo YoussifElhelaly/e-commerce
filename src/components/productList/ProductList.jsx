@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams  } from "react-router-dom"
-import { useRecoilState } from "recoil"
+import { useRecoilState, useRecoilValue } from "recoil"
+import light from "../../atoms/light"
 import loadingList from "../../atoms/loadingList"
 import ProductCate from "../productCate/productCate"
 import ProductItem from "../product_Item/Product_Item"
@@ -9,7 +10,7 @@ import "./productList.css"
 
 
 function ProdectList(props) {
-
+    const lightmode = useRecoilValue(light)
     const params = useParams()
     const [isLoading, setIsLoading] = useRecoilState(loadingList)
     const [show ,setShow] = useState(false)
@@ -58,7 +59,7 @@ function ProdectList(props) {
     }, [params])
     
 return (
-        <div className="productList">
+        <div className="productList" lightMode = {`${lightmode}`}>
         <div className="container_fluid px-md-5 px-3">
             <div className="row no-gutters justify-content-between">
                 <div className="col-md-2">

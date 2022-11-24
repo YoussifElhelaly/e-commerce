@@ -1,3 +1,16 @@
+.cart[lightMode = true] {
+    background-color: white;
+    color: black;
+}
+
+.cart[lightMode = true] h2 {
+    color: black;
+}
+
+.cart h2 {
+    color: white;
+}
+
 .cart .img {
     width: 120px;
     height: 120px;
@@ -16,6 +29,13 @@
     vertical-align: middle;
 }
 
+.cart table td p{
+    color: white;
+}
+.cart[lightMode = true] table td p{
+    color: black;
+}
+
 .cart table td input {
     width: 150px;
     background-color: #212121;
@@ -27,6 +47,11 @@
     margin-right: 20px;
 }
 
+.cart[lightMode = true] table td input {
+    background-color: #bbb;
+    color: black;
+}
+
 .cart table td .delete {
     background-color: transparent;
     transition: 0.3s;
@@ -35,7 +60,37 @@
     margin-right: 20px;
 }
 
+
+.cart table {
+    margin: 0;
+}
+
 .cart table td .delete:hover {
     color: red;
 }
 
+@media (max-width: 767px) {
+    .cart .table thead {
+        display: none;
+    }
+
+    .cart .table tbody tr {
+        display: block;
+        border: 1px solid black;
+        border-radius: 5px ;
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .cart table td {
+        width: 100%;
+        border: unset;
+    }
+
+    .cart table td .delete {
+        position: absolute;
+        right: -10px;
+        top: 0;
+    }
+
+}

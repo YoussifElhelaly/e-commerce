@@ -1,7 +1,6 @@
-import { useEffect } from 'react'
-import { useState } from 'react'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import GlobalCart from '../../atoms/GlobalCart'
+import light from '../../atoms/light'
 import loginState from '../../atoms/loginAtom'
 import userInfo from '../../atoms/userInfo'
 import usersData from '../../atoms/users'
@@ -11,14 +10,12 @@ function Cart() {
 
 
     const [Global, setGlobal] = useRecoilState(GlobalCart)
-    const api_url = "https://fakestoreapi.com/products/1"
-    const [product, setProduct] = useState([])
-    const [stateLogin, setStateLogin] = useRecoilState(loginState)
+    const stateLogin = useRecoilValue(loginState)
     const [User , setUser] = useRecoilState(userInfo)
     const [users, setUsers] = useRecoilState(usersData)
+    const lightmode = useRecoilValue(light)
 
     let carttt = Global
-    // const [stateLogin, setStateLogin] = useRecoilState(loginState)
     
     localStorage.setItem("globalCart" , JSON.stringify(Global))
 
@@ -38,9 +35,9 @@ function Cart() {
     }
 
      return (
-        <div className="cart">
+        <div className="cart" lightMode = {`${lightmode}`}>
             <div className="container">
-                <h2 className='text-center text-light p-5'>Cart</h2>
+                <h2 className='text-center p-5'>Cart</h2>
                 <table className="table">
                     <thead>
                         <tr>
@@ -51,16 +48,16 @@ function Cart() {
                         </tr>
                     </thead>
                     <tbody>
-                         {carttt.map((single, index) => {
+                         {carttt?.map((single, index) => {
                             
                             return  <tr key={index}>
-                                <td className='d-flex align-items-center'>
+                                <td className='d-flex align-items-center first'>
                                     <button className='delete' onClick={(e) => {
                                         if(!stateLogin) {
                                             setGlobal(removeItemAtIndex(Global , index))
                                         } else {
                                             let updateCart = removeItemAtIndex(User.cart , index)
-                                            console.log(updateCart)
+
                                             let newUsers = replaceItemAtIndex(users, User.userID - 1, {
                                                 ...User,
                                                 cart: updateCart
@@ -93,7 +90,7 @@ function Cart() {
                                                 ...User?.cart[index],
                                                 quantity: (document.getElementById(index).value)
                                             })
-                                            console.log(updateCart)
+
                                             let newUsers = replaceItemAtIndex(users, User.userID - 1, {
                                                 ...User,
                                                 cart: updateCart

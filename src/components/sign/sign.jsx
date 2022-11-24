@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './sign.css'
 import Swal from 'sweetalert2/dist/sweetalert2.js'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import loginState from '../../atoms/loginAtom'
 import usersData from '../../atoms/users'
 import userInfo from '../../atoms/userInfo'
@@ -10,6 +10,7 @@ import Address from './Address/Address'
 import cart from '../../atoms/UserCart'
 import GlobalCart from '../../atoms/GlobalCart'
 import { Global } from '@emotion/react'
+import light from '../../atoms/light'
 
 function Sign() {
     const [stateLogin , setStateLogin] = useRecoilState(loginState)
@@ -18,7 +19,17 @@ function Sign() {
     const [cartGlobal, setCartGlobal] = useRecoilState(GlobalCart)
     const [cartUser, setCartUser] = useRecoilState(cart)
     const id = currentUser?.userID
+    const lightmode = useRecoilValue(light)
 
+    let Backcolor
+    let texrColor
+    if (lightmode === true) {
+            Backcolor = ""
+            texrColor = ""
+        } else {    
+            Backcolor = "#212121"
+            texrColor = "#fff"
+    }
     
     let element
     let users = usersInfo
@@ -42,7 +53,6 @@ function Sign() {
     function editItemText(value ,user){
         let idA7a = user.userID - 1
         let bta3 = user?.cart
-        console.log(bta3)
         bta3.concat(value) 
         let newList = replaceItemAtIndex(users, idA7a, {
             ...user,
@@ -78,8 +88,8 @@ function Sign() {
                     Swal.fire({
                         icon: 'error',
                         text: 'UserName or Email is already exist',
-                        background: "#212121",
-                        color: "#fff",
+                        background: Backcolor,
+                        color: texrColor,
                         confirmButtonColor: "#fed200"
                     },)
                 check = 0
@@ -87,8 +97,8 @@ function Sign() {
                  Swal.fire({
                         icon: 'success',
                         text: 'Register Success',
-                        background: "#212121",
-                        color: "#fff",
+                        background: Backcolor,
+                        color: texrColor,
                         confirmButtonColor: "#fed200"
                 },)
                 addUser(userUP)
@@ -98,8 +108,8 @@ function Sign() {
             Swal.fire({
                 icon: 'success',
                 text: 'Register Success',
-                background: "#212121",
-                color: "#fff",
+                background: Backcolor,
+                color: texrColor,
                 confirmButtonColor: "#fed200"
             },)
                 addUser(userUP)
@@ -114,8 +124,8 @@ function Sign() {
                      Swal.fire({
                         icon: 'success',
                         text: 'Loggin Success',
-                        background: "#212121",
-                        color: "#fff",
+                        background: Backcolor,
+                        color: texrColor,
                         confirmButtonColor : "#fed200"
                      },)
                     setStateLogin(true)
@@ -123,7 +133,6 @@ function Sign() {
                     // localStorage.setItem("currentUser" , JSON.stringify(userLogin) )
                     editItemText(cartGlobal,userLogin)
                     setCartGlobal([])
-                    // console.log(editItemText(cartGlobal,userLogin))
 
                     break;
                 } else {
@@ -132,8 +141,8 @@ function Sign() {
                         icon: 'error',
                         title: 'Oops...',
                         text: 'Your Password or Email is Wrong',
-                        background: "#212121",
-                        color: "#fff",
+                        background: Backcolor,
+                        color: texrColor,
                         confirmButtonColor : "#fed200"
                             
                         
@@ -148,8 +157,8 @@ function Sign() {
                     Swal.fire({
                         icon: 'success',
                         text: 'Loggin Success',
-                        background: "#212121",
-                        color: "#fff",
+                        background: Backcolor,
+                        color: texrColor,
                         confirmButtonColor : "#fed200"
                         
                         
@@ -169,8 +178,8 @@ function Sign() {
                         icon: 'error',
                         title: 'Oops...',
                         text: 'Your Password or UserName is Wrong',
-                        background: "#212121",
-                        color: "#fff",
+                        background: Backcolor,
+                        color: texrColor,
                         confirmButtonColor : "#fed200"
                         
                         
@@ -183,27 +192,27 @@ function Sign() {
     if (stateLogin) {
         element =
             <>
-            <div className="logged">
+            <div className="logged" lightMode = {`${lightmode}`}>
                 <h2 className='text-center text-light'>My Account</h2>
 
                 <div className="row">
-                    <div className="col-3">
+                    <div className="col-md-3 col-sm-12">
                         <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <button className="nav-link active text-left" id="v-pills-Dashboard-tab" data-toggle="pill" data-target="#v-pills-Dashboard" type="button" role="tab" aria-controls="v-pills-Dashboard" aria-selected="true">Dashboard<i className="fa-solid fa-gauge-simple-high"></i></button>
                         <button className="nav-link text-left" id="v-pills-Orders-tab" data-toggle="pill" data-target="#v-pills-Orders" type="button" role="tab" aria-controls="v-pills-Orders" aria-selected="false">Orders<i className="fa-solid fa-basket-shopping"></i></button>
                         <button className="nav-link text-left" id="v-pills-Downloads-tab" data-toggle="pill" data-target="#v-pills-Downloads" type="button" role="tab" aria-controls="v-pills-Downloads" aria-selected="false">Downloads<i className="fa-solid fa-file"></i></button>
                         <button className="nav-link text-left" id="v-pills-Addresses-tab" data-toggle="pill" data-target="#v-pills-Addresses" type="button" role="tab" aria-controls="v-pills-Addresses" aria-selected="false">Addresses<i className="fa-solid fa-house-chimney"></i></button>
-                        <button className="nav-link text-left" id="v-pills-Account-tab" data-toggle="pill" data-target="#v-pills-Account" type="button" role="tab" aria-controls="v-pills-Account" aria-selected="false">Account Details<i class="fa-solid fa-user"></i></button>
+                        <button className="nav-link text-left" id="v-pills-Account-tab" data-toggle="pill" data-target="#v-pills-Account" type="button" role="tab" aria-controls="v-pills-Account" aria-selected="false">Account Details<i className="fa-solid fa-user"></i></button>
                         <button className="nav-link logOut text-left"onClick={() => {
                             localStorage.setItem("loginState" , false)
                             sessionStorage.setItem("loginState", false)
                             setStateLogin(false)
                             localStorage.setItem("currentUser", JSON.stringify({}))
                             setCurrentUser({})
-                            }} >Logout<i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+                            }} >Logout<i className="fa-solid fa-arrow-right-from-bracket"></i></button>
                         </div>
                     </div>
-                    <div className="col-9">
+                    <div className="col-md-9 col-sm-12">
                         <div className="tab-content" id="v-pills-tabContent">
                         <div className="tab-pane fade show active" id="v-pills-Dashboard" role="tabpanel" aria-labelledby="v-pills-Dashboard-tab">
                                 Hello {currentUser.userName}
@@ -230,7 +239,7 @@ function Sign() {
             </div>
             </>
     } else {
-         element = <div className="account">
+         element = <div className="account" lightMode = {`${lightmode}`}>
                     <div className="row no-gutters">
                         <div className="col-md-6">
                             <div className="sign-in px-1 px-md-5">
@@ -306,7 +315,7 @@ function Sign() {
         }
 
     return (
-        <div className="sign py-5">
+        <div className="sign py-5" lightMode = {`${lightmode}`}>
             <div className="contaienr-fluid px-5">
                 {element}
             </div>

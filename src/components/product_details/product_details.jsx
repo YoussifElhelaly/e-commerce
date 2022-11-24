@@ -1,6 +1,8 @@
 import { Skeleton } from '@mui/material'
 import { useEffect, useState } from 'react'
 import {useParams} from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import light from '../../atoms/light'
 import ButtonCart from '../buttonCart/buttonCart'
 import CompareButton from '../CompareButton/CompareButton'
 import WishlistButton from '../WishlistButton/WishtlistButton'
@@ -9,7 +11,6 @@ import './product_details.css'
 
 function Product_details() {
     const params = useParams()
-    console.log(params)
     const [singleProduct, setSingleProduct] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const api_url = `https://fakestoreapi.com/products/${params.id}`
@@ -19,7 +20,7 @@ function Product_details() {
         .then((data) => setSingleProduct(data))
         setIsLoading(true)
     }
-
+    const lightmode = useRecoilValue(light)
 
     useEffect(() => {
         call_api()
@@ -28,7 +29,7 @@ function Product_details() {
     return (
         
             isLoading ?
-            <div className = "productDetails">
+            <div className = "productDetails" lightMode = {`${lightmode}`}>
                 <div className="container-fluid">
                 <div className="row">
                     <div className="col-lg-5">
@@ -38,8 +39,8 @@ function Product_details() {
                                 
                                 document.getElementById("zoom").style.position = "absolute" 
                                 document.getElementById("zoom").style.transform = "scale(2)" 
-                                document.getElementById("zoom").style.right = `${50 - e.pageX / 500 * 100+"%"}` 
-                                document.getElementById("zoom").style.bottom = `${100 - e.pageY / 300 * 100+"%"}` 
+                                document.getElementById("zoom").style.right = `${75 - e.pageX / 500 * 100+"%"}` 
+                                document.getElementById("zoom").style.bottom = `${150 - e.pageY / 300 * 100+"%"}` 
                             }} >
                             <img src={singleProduct.image} id="zoom" style={data} alt=""  />
                         </div>
@@ -73,7 +74,7 @@ function Product_details() {
                 </div>
             </div>
         </div > :
-    <div className="productDetails">
+         <div className="productDetails">
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-lg-5">

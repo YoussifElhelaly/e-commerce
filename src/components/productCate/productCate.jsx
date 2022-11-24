@@ -1,10 +1,11 @@
 import { Skeleton } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import loadingList from '../../atoms/loadingList';
 import './productCate.css'
 import adImg from "../img/ad-banner-sidebar.webp"
+import light from '../../atoms/light';
 
 
 function ProductCate(props) {
@@ -12,7 +13,7 @@ function ProductCate(props) {
     const api_url = "https://fakestoreapi.com/products/categories"
     const [Category, setCategory] = useState([])
     const [isLoading , setIsLoading] = useState(false)
-
+    const lightmode = useRecoilValue(light)
     const [isloadingList ,stIsLoadingList] = useRecoilState(loadingList)
 
     const call_api = async  () => {
@@ -28,7 +29,7 @@ function ProductCate(props) {
 
     
     return (
-        <ul className="ProductCate">
+        <ul className="ProductCate" lightMode = {`${lightmode}`}>
             <h5>Assortment</h5>
             {isLoading ?
                 <>

@@ -1,8 +1,13 @@
+import { useRecoilValue } from 'recoil'
+import light from '../../atoms/light'
 import './FAQ.css'
 
 function FAQ() {
+
+    const lightMode = useRecoilValue(light)
+
     return (
-        <div className="faq">
+        <div className="faq" light={`${lightMode}`}>
             <div className="container-fluid px-5">
                 <div className="text text-center py-5">
                     <h2>Frequently Asked Questions</h2>

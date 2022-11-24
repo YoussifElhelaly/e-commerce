@@ -1,5 +1,10 @@
 .productDetails{
     padding: 70px 55px;
+    transition: 0.3s;
+}
+
+.productDetails[lightMode = true] {
+    background-color: #fff;
 }
 
 .productDetails .img {
@@ -18,7 +23,27 @@
     width: 100%;
     object-fit: contain;
     height: 100%;
+    transition: 0 !important;
 }
+
+.productDetails[lightMode = true] .details .info h3 {
+    color: black !important;
+}
+
+
+.productDetails .details .info p ,
+.productDetails .details .info span ,
+.productDetails .details .info p ,
+.productDetails .details .description p {
+    color: white !important;
+}
+.productDetails[lightMode = true] .details .info p ,
+.productDetails[lightMode = true] .details .info span ,
+.productDetails[lightMode = true] .details .info p ,
+.productDetails[lightMode = true] .details .description p {
+    color: black !important;
+}
+
 
 .rate .stars-outer  {
     position: relative;
@@ -55,9 +80,13 @@
     padding: 20px 0 ;
 }
 
-.details .description a{
+.details .description span{
     padding-right: 10px;
     color: white;
+}
+
+.productDetails[lightMode = true] .details .description span {
+    color: black;
 }
 
 .details .description p {
@@ -88,6 +117,11 @@
     padding: 12px;
     height: 100%;
     margin-right: 20px;
+}
+
+.productDetails[lightMode = true] .details .description .form input {
+    background-color: #ddd;
+    color: black;
 }
 
 .details .description .form .toCart {

@@ -1,0 +1,84 @@
+.mode {
+    background-color: #a9a6a6;
+    display: flex;
+    width: fit-content;
+    position: fixed;
+    top: 50%;
+    left: 10px;
+    flex-direction: column;
+    padding: 0 10px;
+    border-radius: 15px;
+    color: white;
+    transform: translateY(-50%);
+    z-index: 999;
+    cursor: pointer;
+}
+
+.background {
+    position: absolute;
+    background-color: #212121;
+    width: calc(100% - 5px);
+    height: calc(50% - 5px);
+    top: 5px;
+    left: 50%;
+    border-radius: 15px;
+    transform: translate( -50% , 0%);
+    transition: 0.3s;
+}
+
+.background.active {
+    transform: translate( -50% , 100%);
+    /* transform: translateY(100%); */
+}
+
+.mode i {
+    padding: 30px 0;
+    position: relative;
+    z-index: 2;
+}
+
+@media (max-width:992px ) {
+    .mode {
+
+
+
+
+        top: unset;
+        left: unset;
+        right: 10px;
+        bottom: 0;
+        flex-direction: row;
+        padding: 0 10px;
+        border-radius: 15px;
+        color: white;
+
+        z-index: 999;
+        cursor: pointer;
+    }
+    
+    .background {
+        position: absolute;
+        background-color: #212121;
+        width: calc(50% );
+        height: calc(100% - 5px);
+        top: 50%;
+        left: 5px;
+        border-radius: 15px;
+        transform: translate( 0% , -50%);
+        transition: 0.3s;
+    }
+    
+    .background.active {
+        top: 50%;
+        left: calc(50% - 5px);
+        transform: translate( 0% , -50%);
+        /* transform: translate(0); */
+        /* transform: translateY(100%); */
+    }
+    
+    .mode i {
+        padding: 15px 15px;
+        position: relative;
+        z-index: 2;
+    }
+}

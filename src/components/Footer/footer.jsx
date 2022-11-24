@@ -1,15 +1,16 @@
 import { Link } from 'react-router-dom'
 import './footer.css'
 import payment from '../img/patment-icon1.webp'
+import { useRecoilValue } from 'recoil'
+import light from '../../atoms/light'
 
 function Footer() {
-
-    console.log("like")
+    const lightmode = useRecoilValue(light)
 
     return (
         <>
-            <footer>
-                <div className="container-fluid">
+            <footer lightMode = {`${lightmode}`}>
+                <div className="container-fluid px-md-5 px-3 py-4">
                     <div className="row">
                         <div className="col-lg-5">
                             <div className="info">
@@ -55,7 +56,7 @@ function Footer() {
                                 </Link>
                                     <div className="call d-flex">
                                     <div className="icon">
-                                        <i class="fa-solid fa-headset"></i>
+                                        <i className="fa-solid fa-headset"></i>
                                     </div>
                                         <div className="number">
                                             <span>
@@ -67,13 +68,13 @@ function Footer() {
                                     <h6>Contact info</h6>
                                     <p>17 Princess Road, London, Greater London NW1 8JR, UK</p>
                                     <div className="social-icons">
-                                        <i class="fa-brands fa-facebook"></i>
-                                        <i class="fa-brands fa-whatsapp"></i>
-                                        <i class="fa-brands fa-pinterest"></i>
-                                        <i class="fa-brands fa-linkedin"></i>
-                                        <i class="fa-brands fa-instagram"></i>
-                                        <i class="fa-brands fa-youtube"></i>
-                                        <i class="fa-solid fa-rss"></i>
+                                        <i className="fa-brands fa-facebook"></i>
+                                        <i className="fa-brands fa-whatsapp"></i>
+                                        <i className="fa-brands fa-pinterest"></i>
+                                        <i className="fa-brands fa-linkedin"></i>
+                                        <i className="fa-brands fa-instagram"></i>
+                                        <i className="fa-brands fa-youtube"></i>
+                                        <i className="fa-solid fa-rss"></i>
                                     </div>
                             </div>
                         </div>
@@ -120,7 +121,7 @@ function Footer() {
                     </div>
                 </div>
             </footer>
-            <div className="copy">
+            <div className="copy" lightMode = {`${lightmode}`}>
                 <div className="container-fluid px-5">
 
                 <div className="row align-items-center text-center text-md-left">

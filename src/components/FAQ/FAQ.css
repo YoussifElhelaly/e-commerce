@@ -1,6 +1,18 @@
+.faq[light=true] {
+    background-color: white;
+}
+
 .faq .text h2{
     color: white;
     font-size: 40px;
+}
+
+.faq .text p{
+    color: white;
+}
+.faq[light=true] .text h2,
+.faq[light=true] .text p{
+    color: black;
 }
 
 .faq .text p{
@@ -15,10 +27,17 @@
     border-bottom: 1px solid #888;
     margin: 50px 0;
 }
+.faq[light=true] .head h2 {
+    color: black;
+}
 
 .faq .box h5,
 .faq .box p{
     color: white;
+}
+.faq[light=true] .box h5,
+.faq[light=true] .box p{
+    color: black;
 }
 
 .faq .box h5 {

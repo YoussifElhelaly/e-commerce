@@ -1,9 +1,14 @@
+import { useRecoilValue } from 'recoil';
+import light from '../../atoms/light';
 import './contact-us.css'
 
 
 function Contact_us() {
+
+    const lighmode = useRecoilValue(light)
+
     return (
-        <div className="contact-us">
+        <div className="contact-us" lightMode = {`${lighmode}`}>
             <div className="container-fluid">
                     <h1 className='text-center py-5'>Contact us</h1>
                 <div className="row">

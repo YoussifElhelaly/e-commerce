@@ -16,19 +16,18 @@ import {Link} from "react-router-dom";
 import ProductItem from "../product_Item/Product_Item"; 
 import ProductList from '../productList/ProductList'
 import ProductCate from "../productCate/productCate";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import loginState from "../../atoms/loginAtom";
+import light from "../../atoms/light";
 
 
 function Home() {
-
+    const lightmode = useRecoilValue(light)
     const [stateLogin , setStateLogin] = useRecoilState(loginState)
-    
-    console.log(stateLogin)
 
     return (
         <>
-            <section className="home">
+            <section className="home" lightMode={`${lightmode}`}>
                 <div className="container-fluid">
                     <div className="row align-items-center">
                         <div className="col-12">
@@ -88,13 +87,13 @@ function Home() {
                             <ProductCate />
                             <img src={adImg} alt="" srcset="" />
                         </div> */}
-                        <div className="col-lg-12 col-md-9">
+                        <div className="col-lg-12 col-md-12">
                             <ProductList api_url="https://fakestoreapi.com/products?limit=18" />
                         </div>
                     </div>
                 </div>
             </section>
-            <section className="ads">
+            <section className="ads" lightMode = {`${lightmode}`}>
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-md-6 p-2">

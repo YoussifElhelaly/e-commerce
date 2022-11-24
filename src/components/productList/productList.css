@@ -1,11 +1,20 @@
 .productList{
     padding: 55px 0;
+    transition: 0.3s;
+}
+
+.productList[lightMode = true] {
+    background-color: #fff;
 }
 
 .productList .title{
     color: white;
     position: relative;
     padding: 10px 0;
+}
+
+.productList[lightMode = true] .title {
+    color: black;
 }
 
 .productList .title::before{
@@ -23,6 +32,12 @@
     width: 200px;
     bottom: 0;
     left: 0;
+    transition: 0.3s;
+}
+
+.productList[lightMode = true] .title::after {
+    border-bottom: 2px solid #dc3545;
+
 }
 
 .productList .productItem {
@@ -40,4 +55,8 @@
     z-index: -1;
 }
 
+.productList[lightMode = true] .productItem::before {
+    border-left: 1px solid #ddd;
+
+}
 

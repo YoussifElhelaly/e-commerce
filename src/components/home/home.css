@@ -8,6 +8,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    transition: 0.3s;
+}
+
+.home::before {
+    position: absolute;
+    content: "";
+    inset: 0;
+    background-color: rgb(255, 255, 255);
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.home[lightMode = true]::before {
+    transition: 0.3s;
+    opacity: 1;
 }
 
 .home h1 {
@@ -19,13 +35,20 @@
 
 .home h1 span {
     font-weight: 700;
-    color: white;
+    color: inherit;
 }
+
+
 
 .home p {
     color: white;
     font-size: 14px;
     font-weight: 600;
+}
+
+.home[lightMode = true] h1 ,
+.home[lightMode = true] p {
+    color: black;
 }
 
 .home .hot-product {
@@ -56,6 +79,11 @@
 
 .ads {
     padding: 0 55px;
+    transition: 0.3s;
+}
+
+.ads[lightMode = true]{
+    background-color: white;
 }
 
 @media screen and (max-width: 1024px) {

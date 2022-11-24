@@ -1,5 +1,8 @@
 .productFilter {
-    padding:  30px 55px;
+    transition: 0.3s;
+}
+.productFilter[lightMode = true] {
+    background-color: #fff;
 }
 
 .productFilter .title h4{
@@ -7,6 +10,10 @@
     position: relative;
     padding-bottom: 15px;
     font-size: 20px;
+}
+
+.productFilter[lightMode = true]  .title h4 {
+    color: black;
 }
 
 .productFilter .title h4::before {
@@ -24,7 +31,12 @@
     bottom: 0;
     width: 100px;
     left: 0;
+    
+}
 
+.productFilter[lightMode = true] .title h4::after {
+    border-bottom: 2px solid #dc3545;
+    
 }
 
 .productFilter .card-product {

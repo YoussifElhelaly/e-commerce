@@ -1,3 +1,28 @@
+
+
+.wishlist[lightMode = true]{
+    background-color: white;
+    transition: 0.3s;
+}
+.wishlist[lightMode = true] h2{
+    color: black !important;
+}
+
+.wishlist[lightMode = true] .list table td p ,
+.wishlist[lightMode = true] .list table td a
+{
+    color: black;
+}
+.wishlist .list table td p ,
+.wishlist .list table td a
+{
+    color: white;
+}
+
+.wishlist .list table {
+    margin: 0;
+}
+
 .wishlist .list table .img{
     width: 120px;
     height: 120px;
@@ -27,4 +52,34 @@
 
 .wishlist .list table td {
     vertical-align: middle;
+}
+
+@media (max-width: 767px) {
+    .wishlist .table thead {
+        display: none;
+    }
+
+    .wishlist .table tbody tr {
+        display: block;
+        border: 1px solid black;
+        border-radius: 5px ;
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .wishlist table td {
+        width: 100%;
+        border: unset;
+    }
+
+    .wishlist table td .delete {
+        position: absolute;
+        right: 10px;
+        top: 0;
+        margin: 0;
+    }
+    .wishlist .list table .toCart {
+        margin: 0;
+    }
+
 }

@@ -1,12 +1,14 @@
 import { Skeleton } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import light from '../../atoms/light'
 import adIMG from '../img/footer-widget-img-01.webp'
 import './productFilter.css'
 
 
 function ProductFilter(props) {
-
+    const lightmode = useRecoilValue(light)
     var api_url_filter1 = `https://fakestoreapi.com/products/category/${props.filter1}?limit=3`
     var api_url_filter2 = `https://fakestoreapi.com/products/category/${props.filter2}?limit=3`
     var api_url_filter3 = `https://fakestoreapi.com/products/category/${props.filter3}?limit=3`
@@ -41,8 +43,8 @@ function ProductFilter(props) {
     }, [props])
 
     return (
-        <section className="productFilter">
-            <div className="container-fluid">
+        <section className="productFilter" lightMode = {`${lightmode}`}>
+            <div className="container_fluid px-md-5 px-3 py-4">
                 <div className="row">
                     <div className="col-lg-3 col-md-6">
                         <div className="title">

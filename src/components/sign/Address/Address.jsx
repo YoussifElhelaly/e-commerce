@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import light from '../../../atoms/light'
 import userInfo from '../../../atoms/userInfo'
 import usersData from '../../../atoms/users'
 import './Address.css'
@@ -11,6 +12,7 @@ function Address() {
     const [currentUser, setCurrentUser] = useRecoilState(userInfo)
     const [users, setUsers] = useRecoilState(usersData)
     const id = currentUser.userID
+    const lightMode = useRecoilValue(light)
     let AddEdit
     let addressDate = <h5>You have not set up this type of address yet.</h5>
     let addAddress = (address) => {
@@ -21,6 +23,7 @@ function Address() {
             orders: currentUser.orders,
             password: currentUser.password,
             userName: currentUser.userName,
+            wishList: currentUser.wishList,
             userID: currentUser.userID
         })
     }
@@ -109,7 +112,7 @@ function Address() {
     }
 
     return (
-        <div className="address">
+        <div className="address" lightMode = {`${lightMode}`}>
             <div className="header d-flex justify-content-between align-items-center">
                 <h2>Shipping Address</h2>
                 <Link onClick={() => {

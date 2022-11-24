@@ -1,3 +1,7 @@
+.about-us[lightMode = true] {
+    background-color: white;
+    color: black;
+}
 .about-us .main {
     background-image: url(../img/Header.webp);
     height: calc(100vh - 60px);
@@ -35,6 +39,10 @@
     color: white;
 }
 
+.about-us[lightMode = true] .vision .box{
+    color: black;
+}
+
 .about-us .vision .box{ 
     color: white;
     text-align: center;
@@ -47,9 +55,17 @@
     padding: 0 30px;
 }
 
+.about-us[lightMode = true] .vision .box h5,
+.about-us[lightMode = true] .vision .box p{
+    color: black;
+}
+
 .about-us .team {
     text-align: center;
     background-color: #212121;
+}
+.about-us[lightMode = true] .team {
+    background-color: #eee;
 }
 
 .about-us .team .img{
@@ -63,6 +79,19 @@
     margin: 10px 0;
 }
 
+.about-us[lightMode = true] .team h5 {
+    color: black;
+    margin: 10px 0;
+}
+
+.about-us[lightMode = true] .left h5,
+.about-us[lightMode = true] .left p{
+    color: black !important;
+}
+
+.about-us .left p{
+    color: white;
+}
 .about-us .info .right .card{
     background-color: transparent;
 }
@@ -73,6 +102,10 @@
     text-decoration: none;
 }
 
+.about-us[lightMode = true] .info .right .card button {
+    color: black;
+}
+
 .about-us .info .right .card button i {
     padding: 10px ;
     margin-right: 10px;
@@ -80,10 +113,11 @@
 
 .about-us .info .right .card button[aria-expanded="true"] i{
         padding: 10px;
-            background-color: #fed700;
-            color: #212121;
-            margin-right: 10px;
-        
+        background-color: #fed700;
+        color: #212121;
+        margin-right: 10px;
+        transform: rotate(45deg);
+        border-radius: 50%;
 }
 
 .about-us .info .right .card .card-header {

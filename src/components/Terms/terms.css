@@ -1,3 +1,18 @@
-.terms h2 {
+.terms[light=true] {
+    background-color: white;
+}
+.terms h2 {   
     font-size: 40px;
+}
+.terms h2 , p ,h3,ul,li{
+    color: white;
+}
+
+.terms[light=true] h2 ,
+ .terms[light=true] p ,
+ .terms[light=true] h3 
+ ,.terms[light=true] ul 
+ ,.terms[light=true] li {
+    color: black ;
+
 }

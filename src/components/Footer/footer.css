@@ -1,5 +1,9 @@
 footer {
-    padding: 70px 55px;
+    transition: 0.3s;
+}
+
+footer[lightMode = true] {
+    background-color: white;
 }
 
 footer .info .call{
@@ -26,6 +30,9 @@ footer .info h6 ,p {
     color: white;
 }
 
+footer .info p {
+    color: white;
+} 
 footer .info .social-icons i{
     font-size: 24px;
     margin: 10px;
@@ -46,8 +53,38 @@ footer .right ul li {
     color: #ddd;
 }
 
+footer[lightMode = true] .info a svg path {
+    fill: #212121 !important;
+}
+
+footer[lightMode = true] .right ul li ,
+footer[lightMode = true] .right ul,
+footer[lightMode = true] .info .call p,
+footer[lightMode = true] .info p,
+footer[lightMode = true] .info h6 ,p{
+    color: black;
+}
+
+footer[lightMode = true] .info .call span {
+    color: #111;
+}
+
 .copy {
     background-color: #212121;
+}
+
+.copy[lightMode = true] {
+    background-color: #e7e7e7;
+}
+
+.copy p {
+    color: white !important;
+
+}
+
+.copy[lightMode = true] p {
+    
+    color: black !important;
 }
 
 .copy .right img{

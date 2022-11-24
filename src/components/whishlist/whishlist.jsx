@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import light from '../../atoms/light'
 import userInfo from '../../atoms/userInfo'
 import usersData from '../../atoms/users'
 import ButtonCart from '../buttonCart/buttonCart'
@@ -9,8 +10,8 @@ function Whishlist() {
 
     const [users, setUsers] = useRecoilState(usersData)
     const [user , setUser] = useRecoilState(userInfo)
+    const lightmode = useRecoilValue(light)
     let carttt = user?.wishList
-    console.log(carttt)
     function replaceItemAtIndex(arr, index, newValue) {
         return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
       }
@@ -25,14 +26,13 @@ function Whishlist() {
             ...user ,
             wishList : whislistUpdate
         })
-        // console.log(x)
         setUsers(newUsers)
         localStorage.setItem("users",JSON.stringify(newUsers))
         setUser(newUsers[user?.userID - 1])
         localStorage.setItem("currentUser",JSON.stringify(newUsers[user?.userID - 1]))
     }
     return (
-        <div className="wishlist">
+        <div className="wishlist" lightMode = {`${lightmode}`}>
             <div className="container-fluid px-5">
 
                 <h2 className='text-center text-light py-5'>Wishlist</h2>
@@ -55,9 +55,11 @@ function Whishlist() {
                                  <div className="style d-flex justify-content-between w-100">
 
                                     <Link to={`../product/${single.id}`}>{ single.title }</Link>
-                                    <ButtonCart product = {single.product}/>
                                 </div>
                             </td>
+                                <td>
+                                    <ButtonCart product = {single}/>
+                                </td>
                              <td colSpan={4}>
                                  <p>${single.price }</p>
                              </td>

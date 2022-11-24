@@ -3,32 +3,42 @@ import {Link} from "react-router-dom";
 import Search from '../search/Search';
 import { useRecoilValue } from 'recoil';
 import GlobalCart from '../../atoms/GlobalCart';
-import { Global } from '@emotion/react';
 import loginState from '../../atoms/loginAtom';
 import userInfo from '../../atoms/userInfo';
+import light from '../../atoms/light';
 
 function Navbar() {
 
-
-    let orders = useRecoilValue(GlobalCart)
+    const lightmode = useRecoilValue(light)
+    let global = useRecoilValue(GlobalCart)
+    let orders 
     let sum = 0
     const stateLogin = useRecoilValue(loginState)
     const User = useRecoilValue(userInfo)
 
+
     if (stateLogin) {
-        orders = User.cart
+        orders = User?.cart
+    } else {
+        orders = global
     }
 
     const money = () => {
         for (let price of orders) {
-            sum += (+(price.product?.price) * +(price.quantity))
+            sum += (+(price?.product?.price) * +(price?.quantity))
         }
+        // for (let price ; price <= orders.length ; ++price ) {
+        //     sum += (+(orders[price]?.product?.price) * +(orders[price]?.quantity))
+        // }
     }
 
+   
     money()
+ 
+
 
     return (
-        <nav>
+        <nav lightMode = {`${lightmode}`}>
             <div className="container-fluid">
                 <div className="menu" id="menu">
                                 <button onClick={() => {
@@ -140,10 +150,13 @@ function Navbar() {
                                         <i className="fa-regular fa-heart"></i>
                                     </Link>
                                     </li>
-                                    <li className='user' onClick={() => {
+
+                                    {stateLogin ? <li><Link to={"../account"}> <i className="fa-regular fa-user"></i></Link></li>
+                                     : 
+                                     <li className='user' onClick={() => {
                                         document.getElementById("user-log").classList.toggle("active")
                                     }}>
-                                        
+
                                         <i className="fa-regular fa-user"></i>
                                         
                                         <div className="user-log" id="user-log">
@@ -153,10 +166,13 @@ function Navbar() {
                                             </div>
                                             <div className="signUp">
                                                 <p>Don't have an account?</p>
-                                                <Link>Register</Link>
+                                                <Link to={`account`}>Register</Link>
                                             </div>
                                         </div>
+                                      
                                     </li>
+                                     }
+                                    
                                     <li>
                                         <Link to="../cart" className='cart d-flex'>
                                             <i className="fa-solid fa-bag-shopping"></i>
@@ -256,7 +272,7 @@ function Navbar() {
                                     </Link>
                                     </li>
                                     <li>
-                                        <Link Link="../account" className='user'>
+                                        <Link to="../account" className='user'>
                                         <i className="fa-regular fa-user"></i>
                                         </Link>
                                         <div className="user-log">

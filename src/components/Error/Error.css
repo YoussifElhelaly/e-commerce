@@ -1,4 +1,16 @@
+.error404[lightMode = true] {
+    background-color: white;
+}
+
 .error404 h2 {
     font-size: 120px;
     color: #fed200;
+}
+
+.error404 p {
+    color: white;
+}
+
+.error404[lightMode = true] p {
+    color: black;
 }

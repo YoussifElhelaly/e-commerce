@@ -1,9 +1,26 @@
+.sign[lightMode=true] {
+    background-color: white;
+    color: black;
+}
+
+.sign .head p {
+    color: white ;
+}
+
+.sign[lightMode=true] .head p {
+    color: black;
+}
+
 .sign .head h2 {
     position: relative;
     color: white;
     font-size: 28px;
     padding: 15px 0;
     margin-bottom: 15px;
+}
+
+.sign[lightMode=true] .head h2 {
+    color: black !important;
 }
 
 .sign .head h2::before  {
@@ -54,6 +71,10 @@
     padding: 10px 0 20px;
 }
 
+.sign[lightMode=true] .logged > h2 {
+    color: black !important;
+}
+
 .sign .logged .notFound{
     background-color: #fed200;
     color: black;
@@ -99,6 +120,20 @@
     border-color: #212121;
 }
 
+.sign p {
+    color: white;
+}
+
+.sign[lightMode = true] p {
+    color: black;
+}
+
+.sign[lightMode=true] input.form-control {
+    border-color: #aaa;
+    background-color: #ddd;
+    color: black;
+}
+
 .sign input.form-control:foucs {
     border: 1px solid #1da1f2;
     background-color: #212121;
@@ -115,6 +150,12 @@
     cursor: pointer;
 }
 
+.sign[lightMode = true] .button {
+    
+    background-color: #e7c400;
+    /* color: white; */
+}
+
 @media(max-width : 768px) {
     .sign .account::after {
         content: unset;
@@ -122,4 +163,7 @@
     .sign .account::before {
         content: unset;
     }
+}
+.sign[lightMode=true] .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: black;
 }

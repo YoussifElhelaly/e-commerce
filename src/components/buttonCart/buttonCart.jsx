@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
+import Swal from 'sweetalert2'
 import GlobalCart from '../../atoms/GlobalCart'
+import light from '../../atoms/light'
 import loginState from '../../atoms/loginAtom'
 import userInfo from '../../atoms/userInfo'
 import usersData from '../../atoms/users'
@@ -15,7 +17,19 @@ function ButtonCart(props) {
     let check = 0
     const [User , setUser] = useRecoilState(userInfo)
     const [usersInfo ,setusersInfo] = useRecoilState(usersData)
+    const lightMode = useRecoilValue(light)
 
+    let Backcolor
+    let texrColor
+    if (lightMode === true) {
+            Backcolor = ""
+            texrColor = ""    
+        } else {    
+            Backcolor = "#212121"
+            texrColor = "#fff"
+
+    }
+  
  
     if (props.state === "home") {
         buttonContent = <i className="fa-solid fa-cart-plus"></i>
@@ -43,11 +57,10 @@ function ButtonCart(props) {
                         ...product,
                         quantity: +product.quantity + +numOfQuantity
                     }))
-                    console.log(Global.indexOf(product))
-                    console.log("mogod")
+
                     check = 1
                     break
-                    // console.log(Global)
+
                 } 
             } 
             if  (check === 0) {
@@ -59,8 +72,7 @@ function ButtonCart(props) {
                         },
             ]);
                 } 
-            // 
-            // console.log(Global)
+
         }
     } else {
         addItem = () => {
@@ -69,9 +81,9 @@ function ButtonCart(props) {
             } else {
                 numOfQuantity = document.getElementById("Quantity").value
             }
-            // console.log(props.product)
+
             for (let product of User?.cart) {
-                // console.log(props.product)
+
                 if (product.product.id === props.product.id) {
                     let newCart =  replaceItemAtIndex(User?.cart, User?.cart.indexOf(product), {
                         ...product,
@@ -85,9 +97,6 @@ function ButtonCart(props) {
                     localStorage.setItem("users",JSON.stringify(newUsers))
                     setUser(newUsers[User?.userID - 1])
                     localStorage.setItem("currentUser",JSON.stringify(newUsers[User?.userID - 1]))
-                    console.log(newCart)
-                    console.log(User?.cart.indexOf(product))
-                    console.log("mogod")
                     check = 1
                     break
                 } 
@@ -114,8 +123,17 @@ function ButtonCart(props) {
     }, [Global])
     
     return (
-        <button className="btn toCart rounded-circle " onClick={
-            addItem
+        <button className="btn toCart rounded-circle " onClick={() => {
+            addItem()
+            Swal.fire({
+                icon: 'success',
+                title: 'Your Item Added to Cart',
+                showConfirmButton: false,
+                background: Backcolor,
+                color: texrColor,
+                timer: 1000
+              })
+        }
         }>{ buttonContent }</button>
     )
 }

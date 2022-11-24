@@ -1,11 +1,26 @@
-import { useRecoilState } from "recoil"
+import { useRecoilState, useRecoilValue } from "recoil"
 import Swal from "sweetalert2";
 import compare from "../../atoms/Compare"
+import light from "../../atoms/light";
+import "./CompareButton.css"
 
 function CompareButton(props) {
 
     const [compareList , setCompareList] = useRecoilState(compare)
+    const lightMode = useRecoilValue(light)
 
+    let Backcolor
+    let texrColor
+    if (lightMode === true) {
+            Backcolor = ""
+            texrColor = ""
+
+        } else {    
+            Backcolor = "#212121"
+            texrColor = "#fff"
+
+    }
+  
     function addItem() {
         const newList = (() => {
             return [
@@ -27,8 +42,7 @@ function CompareButton(props) {
         
       for(let i = 0 ; i <= compareList?.length ; i++) {
                 if(props.product?.id === compareList[i]?.product.id && props.product?.id !== undefined) {
-                    console.log(props.product?.id)
-                    console.log(compareList[i]?.product.id)
+
                     a8a = false
                     index = i
                 }
@@ -36,24 +50,73 @@ function CompareButton(props) {
 
     return (
         a8a?
-        <span className="compare" onClick={() => {
-            console.log(props)
-            addItem()
-            console.log(compareList)
+        <span className="compare-btn" onClick={() => {
+            if (compareList.length >= 2) {
+                Swal.fire({
+                    title: 'Are You Want to Add this?',
+                    text: "your Compare list is full",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    background: Backcolor,
+                    color: texrColor,
+                    confirmButtonColor: "#f2d200",
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Add it!'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                        let newList = removeItemAtIndex(compareList, 0)
+                        localStorage.setItem("compareList" , JSON.stringify((newList)))
+                        setCompareList(newList)
+                        const update = (() => {
+                            return [
+                                ...newList,
+                                props
+                            ]
+                        }
+                        );
+                        setCompareList(update())
+                        localStorage.setItem("compareList" , JSON.stringify((update())))
+
+                    a8a = true
+                      Swal.fire(
+                        {
+                            icon: 'success',
+                            title: 'Your Item has been Added.',
+                            showConfirmButton: false,
+                            background: Backcolor,
+                            color: texrColor,
+                            timer: 1000
+                          }
+                      )
+                    }
+                  })
+            } else {
+
+                addItem()
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Your Item Added in Compare List',
+                    showConfirmButton: false,
+                    background: Backcolor,
+                    color: texrColor,
+                    timer: 1000
+                })
+            }
         }}>
             <i className="fa-solid fa-arrow-right-arrow-left"></i> Compare 
         </span> 
         :
-        <span id={index} className="compare" onClick={
+        <span id={index} className="compare-btn" onClick={
             (e) => {
-                console.log(e.target.id)
-                // console.log(user.wishList.indexOF({}))
+
                 Swal.fire({
                     title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
+                    text: "You Want to delete this!",
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
+                    background: Backcolor,
+                    color: texrColor,
+                    confirmButtonColor: "#f2d200",
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Yes, delete it!'
                   }).then((result) => {
@@ -64,9 +127,14 @@ function CompareButton(props) {
                         setCompareList(newList)
                     a8a = true
                       Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
+                        {
+                            icon: 'success',
+                            title: 'Your Item has been deleted.',
+                            showConfirmButton: false,
+                            background: Backcolor,
+                            color: texrColor,
+                            timer: 1000
+                          }
                       )
                     }
                   })

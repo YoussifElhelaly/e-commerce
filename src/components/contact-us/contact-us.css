@@ -1,6 +1,14 @@
+.contact-us[lightMode = true] {
+    background-color: white;
+}
+
 .contact-us h1 {
     font-size: 40px;
     color: white;
+}
+
+.contact-us[lightMode = true] h1 {
+    color: black;
 }
 
 .contact-us .head h2{
@@ -9,6 +17,16 @@
     padding: 15px 0;
     margin-bottom: 15px;
     color: #ddd;
+}
+.contact-us[lightMode = true] .head h2{
+    color: #000;
+}
+
+.contact-us .head p {
+    color: white;
+}
+.contact-us[lightMode = true] .head p {
+    color: black;
 }
 
 .contact-us .head h2::before {
@@ -28,6 +46,11 @@
     bottom: 0;
     left: 0;
 }
+.contact-us[lightMode = true] .head h2::after {
+
+    border-bottom: 2px solid red;
+
+}
 
 .contact-us .left .form input,
 .contact-us .left .form textarea{
@@ -38,11 +61,21 @@
     transition: 0.3s;
 }
 
+.contact-us[lightMode = true] .left .form input,
+.contact-us[lightMode = true] .left .form textarea{
+    background-color: #ddd;
+    border-color: #ddd;
+}
+
 .contact-us .left .form input:focus,
 .contact-us .left .form textarea:focus {
     border-color: #1da1f2;
 }
 
+.contact-us[lightMode = true] .left .form label{
+    color: #000;
+
+}
 .contact-us .left .form label{
     color: #ddd;
     font-weight: 400;
@@ -59,6 +92,13 @@
     border-radius: 50px;
     font-size: 14px;
     font-weight: 600;
+    border: unset;
+
+}
+
+.contact-us[lightMode = true] .left .form .button {
+    background-color: #000;
+    color: white;
 }
 
 .contact-us .right .address div{
@@ -71,7 +111,16 @@
     margin: 0;
 }
 
+.contact-us[lightMode = true] .right .address div p {
+    color: #777;
+
+}
+
 .contact-us .right .address div h6 {
     color: #fff;
     margin-bottom: 10px;
+}
+
+.contact-us[lightMode = true] .right .address div h6 {
+    color: #000;
 }

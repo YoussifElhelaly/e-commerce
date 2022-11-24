@@ -6,6 +6,10 @@
     position: relative;
 }
 
+.address[lightMode = true] .header {
+    color: black;
+}
+
 .address .header::before {
     content: "";
     position: absolute;
@@ -13,4 +17,12 @@
     width: 200px;
     bottom: 0;
     left: 0;
+}
+
+.address ul li {
+    color: white;
+}
+
+.address[lightMode = true] ul li {
+    color: black;
 }

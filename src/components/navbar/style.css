@@ -1,21 +1,14 @@
 *{
     color: grey;
 }
-
 nav {
     padding: 5px 50px;
     position: relative;
+    transition: 0.3s;
 }
-
-/* nav .info-nav::before {
-    position: absolute;
-    content: "";
-    border-top: 1px solid grey;
-    width: 100%;
-    left: 0;
-    top: 35px;
-} */
-
+nav[lightMode = true] {
+    background-color: #fff;
+}
 nav .info-nav a{
     font-size: 13px;
     color: grey;
@@ -23,6 +16,10 @@ nav .info-nav a{
 
 nav .info-nav a:hover {
     color: white;
+}
+
+nav[lightMode = true] .info-nav a:hover {
+    color: black;
 }
 
 nav .info-nav ul li {
@@ -56,6 +53,8 @@ nav .details-nav .pages ul li {
     font-size: 14px;
 }
 
+
+
 nav .details-nav .user-nav ul {
     padding: 0 15px;
     margin: 0;
@@ -71,6 +70,10 @@ nav .details-nav .user-nav ul li{
 
 nav .details-nav .user-nav ul li i{
     color: white;
+}
+
+nav[lightMode = true] .details-nav .user-nav ul li i {
+    color: black !important;
 }
 
 nav .details-nav .user-nav ul li .cart {
@@ -105,6 +108,12 @@ nav .details-nav .user-nav ul li .user-log {
     transition: 0.3s;
     opacity: 0;
     visibility: hidden;
+    color: white;
+}
+
+nav[lightMode = true] .details-nav .user-nav ul li .user-log {
+    background-color: #eee;
+    color: white;
 }
 
 nav .details-nav .user-nav ul li .user-log.active {
@@ -113,8 +122,14 @@ nav .details-nav .user-nav ul li .user-log.active {
     opacity: 1;
 }
 
+
+
 nav .details-nav .user-nav ul li .user-log p {
     font-size: 16px;
+    color: white;
+}
+nav[lightMode = true] .details-nav .user-nav ul li .user-log p {
+    color: black;
 }
 
 nav .details-nav .user-nav ul li .user-log .signIn {
@@ -146,6 +161,10 @@ nav .details-nav .user-nav ul li span {
     font-size: 16px;
 }
 
+nav[lightMode = true] .details-nav .user-nav ul li span {
+    color: black !important;
+}
+
 .mobile-nav {
     display: none;
 } 
@@ -157,7 +176,7 @@ nav .details-nav .user-nav ul li span {
     color: #333e48;
 }
 
-#menu {
+nav #menu {
     position: absolute;
     top: 0;
     left: -400px;
@@ -171,22 +190,35 @@ nav .details-nav .user-nav ul li span {
     transition: 0.3s;
 }
 
-#menu ul{
+nav[lightMode = true] #menu {
+    background-color: #fff;
+    color: black !important;
+}
+
+nav #menu ul{
     margin-top: 10px;
 }
 
-#menu ul li{
+nav #menu ul li{
     color: white;
     padding: 10px;
     margin: 0 100px;
 }
 
-#menu button {
+nav[lightMode = true] #menu ul li {
+    color: black
+}
+
+nav #menu button {
     background-color: transparent;
     border: none;
     font-size: 28px;
     margin: 10px;
     text-align: right;
+}
+
+nav[lightMode = true] svg path{
+    fill: black !important;
 }
 
 @media screen and (max-width: 1024px) {
@@ -213,6 +245,9 @@ nav .details-nav .user-nav ul li span {
     .menu-btn {
         color: white;
         margin-right: 25px;
+    }
+    nav[lightMode = true] .menu-btn {
+        color: black !important;
     }
     nav .details-nav .user-nav ul li {
         margin: 5px 10px;

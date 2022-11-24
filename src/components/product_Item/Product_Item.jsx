@@ -1,5 +1,7 @@
 import { Skeleton } from "@mui/material";
 import { Link } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import light from "../../atoms/light";
 import ButtonCart from "../buttonCart/buttonCart";
 import CompareButton from "../CompareButton/CompareButton";
 import Whishlist from "../whishlist/whishlist";
@@ -9,14 +11,10 @@ import './Product_item.css';
 
 function ProductItem(product) {
 
-    if (product) {
-        console.log("aaa")
-    } else {
-        console.log("bvbb")
-    }
+    const lightmode = useRecoilValue(light)
 
     return (
-        <div className="productItem">            
+        <div className="productItem" lightMode = {`${lightmode}`}>            
             <span className="cate">{product.product.category}</span>
             <h4 className="productName">{product.product.title.split(" ").splice(0, 3).join(" ")}</h4>
             <Link to={`../product/${product.product.id}`} className="img">

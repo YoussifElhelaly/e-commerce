@@ -7,10 +7,15 @@ import team2 from '../img/people2.webp'
 import team3 from '../img/people3.webp'
 import team4 from '../img/people4.webp'
 import team5 from '../img/people5.webp'
+import light from '../../atoms/light'
+import { useRecoilValue } from 'recoil'
 
 function About() {
+
+    const lightmode = useRecoilValue(light)
+
     return (
-        <div className="about-us">
+        <div className="about-us" lightMode={`${lightmode}`}>
             <div className="main">
                 <div className="text">
                     <h2>About Us</h2>

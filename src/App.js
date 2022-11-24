@@ -2,15 +2,12 @@ import Navbar from './components/navbar/navbar'
 import { Routes, Route} from "react-router-dom";
 import Home from './components/home/Home.jsx';
 import About from './components/About/About.jsx';
-import Feature from './components/feature/feature';
-import Blog from './components/blog/blog';
 import Contact_us from './components/contact-us/contact-us';
 import Product_details from './components/product_details/product_details';
 import ProdectList from './components/productList/ProductList';
 import Compare from './components/compare/compare';
 import Whishlist from './components/whishlist/whishlist';
 import ProductFilter from './components/productFilter/productFilter';
-import { createContext, useEffect, useState } from 'react';
 import Sign from './components/sign/sign';
 import FAQ from './components/FAQ/FAQ';
 import Terms from './components/Terms/terms';
@@ -19,10 +16,8 @@ import { RecoilRoot, useRecoilState, useRecoilValue } from 'recoil';
 import News from './components/Newsletter/News';
 import Footer from './components/Footer/footer';
 import Cart from './components/Cart/cart';
-import { SkeletonTheme } from 'react-loading-skeleton';
-import loginState from './atoms/loginAtom';
-import cart from './atoms/UserCart';
-import GlobalCart from './atoms/GlobalCart';
+import ScrollToTop from './components/ss';
+import ModeBtn from './components/ModeButton/ModeButton';
 
 
 function App() {
@@ -42,12 +37,12 @@ function App() {
     <>
       <RecoilRoot>
           <Navbar />
+          <ModeBtn />
+            <ScrollToTop />
           <Routes>
             <Route path="/" element={<Home />}  />
             <Route path="home" element={<Home />}  />
             <Route path="about" element={<About />}/>
-            <Route path="blog" element={<Blog />} />
-            <Route path="feature" element={<Feature />} />
             <Route path="contact-us" element={<Contact_us />} />
             <Route path="Compare" element={<Compare />} />
             <Route path="Whishlist" element={<Whishlist />} />
